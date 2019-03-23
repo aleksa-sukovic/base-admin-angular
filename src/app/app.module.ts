@@ -7,6 +7,7 @@ import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
 import { ThemeModule } from './@theme/theme.module';
 import { AppRoute } from './app.routing';
 import { CoreModule } from './@core/core.module';
+import { SharedModule } from './@shared/shared.module';
 
 @NgModule({
     declarations: [
@@ -17,14 +18,15 @@ import { CoreModule } from './@core/core.module';
         AppRoute,
 
         // Core and Shared
-        CoreModule,
+        CoreModule.forRoot(),
+        SharedModule,
 
         // 3rd party
         BrowserModule,
         BrowserAnimationsModule,
         NbThemeModule.forRoot({ name: 'corporate' }),
-        ThemeModule.forRoot(),
-        NbLayoutModule
+        NbLayoutModule,
+        ThemeModule.forRoot()
     ],
     providers: [],
     bootstrap: [AppComponent]
