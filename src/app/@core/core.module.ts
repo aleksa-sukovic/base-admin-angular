@@ -1,9 +1,13 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { ModuleWithProviders } from '@angular/compiler/src/core';
 import { LocaleService } from './services/locale.service';
+import { HttpClientModule } from '@angular/common/http';
+import { ApiService } from './services/api.service';
 
 @NgModule({
-    imports: [],
+    imports: [
+        HttpClientModule
+    ],
     providers: [],
     exports: []
 })
@@ -21,7 +25,8 @@ export class CoreModule
         return {
             ngModule: CoreModule,
             providers: [
-                LocaleService
+                LocaleService,
+                ApiService
             ]
         }
     }
