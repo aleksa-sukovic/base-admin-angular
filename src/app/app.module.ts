@@ -6,13 +6,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NbThemeModule, NbLayoutModule } from '@nebular/theme';
 import { ThemeModule } from './@theme/theme.module';
 import { AppRoute } from './app.routing';
+import { CoreModule } from './@core/core.module';
 
 @NgModule({
     declarations: [
         AppComponent
     ],
     imports: [
+        // App
         AppRoute,
+
+        // Core and Shared
+        CoreModule,
+
+        // 3rd party
         BrowserModule,
         BrowserAnimationsModule,
         NbThemeModule.forRoot({ name: 'corporate' }),
