@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LocaleService } from './@core/services/locale.service';
 
 @Component({
   selector: 'app-root',
@@ -7,8 +8,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent
 {
-    constructor()
+    constructor(private localeService: LocaleService)
     {
-       //
+       console.log(localeService.available);
+       console.log(localeService.current);
     }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -15,9 +15,12 @@ export class ApiService
         this.apiBaseUrl = environment.apiUrl;
     }
 
-    public get(path: string): Observable<HttpResponse<any>>
+    public get(path: string, params?: any): Observable<HttpResponse<any>>
     {
-        return this.http.get(this.getPath(path), { observe: 'response' });
+        return this.http.get(this.getPath(path), {
+            observe: 'response',
+            params: this.makeParams(params)
+        });
     }
 
     protected getPath(path: string)
@@ -31,5 +34,18 @@ export class ApiService
         }
 
         return this.apiBaseUrl + path;
+    }
+
+    protected makeParams(params?: any): HttpParams
+    {
+        let httpParams = new HttpParams();
+
+        if (params) {
+            for (let key in params) {
+                httpParams = httpParams.set(key, params[key]);
+            }
+        }
+
+        return httpParams;
     }
 }

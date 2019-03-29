@@ -1,15 +1,25 @@
-import { NgModule, Optional, SkipSelf } from '@angular/core';
+import { NgModule, Optional, SkipSelf, APP_INITIALIZER } from '@angular/core';
 import { ModuleWithProviders } from '@angular/compiler/src/core';
 import { LocaleService } from './services/locale.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './services/api.service';
+import { Initializer } from './services/initializer.service';
+
+export function initialize(initializer: Initializer)
+{
+    return (): Promise<void> => initializer.init();
+}
 
 @NgModule({
     imports: [
         HttpClientModule
     ],
-    providers: [],
-    exports: []
+    providers: [
+        //
+    ],
+    exports: [
+        //
+    ]
 })
 export class CoreModule
 {
@@ -26,7 +36,13 @@ export class CoreModule
             ngModule: CoreModule,
             providers: [
                 LocaleService,
-                ApiService
+                ApiService,
+                {
+                    provide: APP_INITIALIZER,
+                    useFactory: initialize,
+                    deps: [Initializer, LocaleService],
+                    multi: true
+                }
             ]
         }
     }
