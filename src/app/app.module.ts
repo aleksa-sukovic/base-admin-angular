@@ -8,6 +8,7 @@ import { ThemeModule } from './@theme/theme.module';
 import { AppRoute } from './app.routing';
 import { CoreModule } from './@core/core.module';
 import { SharedModule } from './@shared/shared.module';
+import { DashboardModule } from './@modules/dashboard/dashboard.module';
 
 @NgModule({
     declarations: [
@@ -20,6 +21,9 @@ import { SharedModule } from './@shared/shared.module';
         // Core and Shared
         CoreModule.forRoot(),
         SharedModule,
+
+        // Custom
+        DashboardModule,
 
         // 3rd party
         BrowserModule,

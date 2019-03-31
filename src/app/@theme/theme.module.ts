@@ -1,13 +1,14 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NbThemeModule, NbLayoutModule, NbSidebarModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbCardModule } from '@nebular/theme';
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 
 const NB_MODULES = [
     NbLayoutModule,
-    NbSidebarModule
+    NbSidebarModule,
+    NbCardModule
 ];
 
 const NB_THEME_PROVIDERS = [

@@ -11,6 +11,9 @@ export function initialize(initializer: Initializer)
 }
 
 @NgModule({
+    declarations: [
+        //
+    ],
     imports: [
         HttpClientModule
     ],

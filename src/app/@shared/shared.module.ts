@@ -1,9 +1,22 @@
-import { NgModule, Optional, SkipSelf } from '@angular/core';
+import { NgModule } from '@angular/core';
+import { PageNotFound } from './components/page-not-found/page-not-found.component';
+import { ThemeModule } from '../@theme/theme.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-    imports: [],
-    providers: [],
-    exports: []
+    declarations: [
+        PageNotFound
+    ],
+    imports: [
+        ThemeModule,
+        RouterModule
+    ],
+    providers: [
+        //
+    ],
+    exports: [
+        PageNotFound
+    ]
 })
 export class SharedModule
 {
