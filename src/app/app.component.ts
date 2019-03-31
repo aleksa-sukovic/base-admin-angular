@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { LocaleService } from './@core/services/locale.service';
+import { Component, ViewChild } from '@angular/core';
+import { Sidebar } from './@core/components/sidebar.component';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +8,17 @@ import { LocaleService } from './@core/services/locale.service';
 })
 export class AppComponent
 {
-    constructor(private localeService: LocaleService)
+    @ViewChild(Sidebar) protected sidebarComponent: Sidebar;
+
+    constructor()
     {
-       console.log(localeService.available);
-       console.log(localeService.current);
+       //
+    }
+
+    protected toggleSidebar(): boolean
+    {
+        this.sidebarComponent.toggle();
+
+        return false;
     }
 }

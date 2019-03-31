@@ -4,6 +4,10 @@ import { LocaleService } from './services/locale.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './services/api.service';
 import { Initializer } from './services/initializer.service';
+import { SidebarMenuService } from './services/sidebar.menu.service';
+import { Sidebar } from './components/sidebar.component';
+import { ThemeModule } from '../@theme/theme.module';
+import { NbLayoutModule } from '@nebular/theme';
 
 export function initialize(initializer: Initializer)
 {
@@ -12,16 +16,18 @@ export function initialize(initializer: Initializer)
 
 @NgModule({
     declarations: [
-        //
+        Sidebar
     ],
     imports: [
-        HttpClientModule
+        HttpClientModule,
+        ThemeModule,
+        NbLayoutModule
     ],
     providers: [
         //
     ],
     exports: [
-        //
+        Sidebar
     ]
 })
 export class CoreModule
@@ -40,6 +46,7 @@ export class CoreModule
             providers: [
                 LocaleService,
                 ApiService,
+                SidebarMenuService,
                 {
                     provide: APP_INITIALIZER,
                     useFactory: initialize,

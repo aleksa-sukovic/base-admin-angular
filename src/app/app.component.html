@@ -1,17 +1,17 @@
 <nb-layout>
 
-  <nb-layout-header fixed>
-    <p>Header</p>
-  </nb-layout-header>
+    <nb-layout-header fixed>
+        <a href="" (click)="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </a>
+    </nb-layout-header>
 
-  <nb-sidebar>
-      <p>Sidebar Content</p>
-  </nb-sidebar>
+    <nb-sidebar>
+        <sidebar></sidebar>
+    </nb-sidebar>
 
-  <nb-layout-column>
-
-    <router-outlet></router-outlet>
-
-  </nb-layout-column>
+    <nb-layout-column>
+        <router-outlet></router-outlet>
+    </nb-layout-column>
 
 </nb-layout>
