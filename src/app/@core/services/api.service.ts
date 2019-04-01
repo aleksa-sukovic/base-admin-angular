@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpResponse, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -19,7 +19,27 @@ export class ApiService
     {
         return this.http.get(this.getPath(path), {
             observe: 'response',
-            params: this.makeParams(params)
+            params: this.makeParams(params),
+        });
+    }
+
+    public post(path: string, data?: any): Observable<HttpResponse<any>>
+    {
+        return this.http.post(this.getPath(path), data, {
+            observe: 'response',
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json'
+            })
+        });
+    }
+
+    public put(path: string, data?: any): Observable<HttpResponse<any>>
+    {
+        return this.http.put(this.getPath(path) + '/' + (data.id || -1), data, {
+            observe: 'response',
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json'
+            })
         });
     }
 

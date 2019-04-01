@@ -40,5 +40,30 @@ export abstract class ResourceService<Model extends Resource>
             );
     }
 
+    save(model: Model): Observable<Model>
+    {
+        if (!model.id || model.id == -1) {
+            return this.create(model);
+        }
+
+        return this.update(model);
+    }
+
+    create(model: Model): Observable<Model>
+    {
+        return this.apiService.post(this.path, model)
+            .pipe(
+                map(data => this.convert(data.body.data))
+            );
+    }
+
+    update(model: Model): Observable<Model>
+    {
+        return this.apiService.put(this.path, model)
+            .pipe(
+                map(data => this.convert(data.body.data))
+            );
+    }
+
     protected abstract convert(data: any): Model;
 }

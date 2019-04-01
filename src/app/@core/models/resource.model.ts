@@ -1,6 +1,7 @@
 export abstract class Resource
 {
-    protected raw: any;
+    public id: number;
+    public raw: any;
 
     constructor(data?: any)
     {
