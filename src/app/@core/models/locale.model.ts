@@ -1,24 +1,21 @@
-import { Resource } from './resource.model';
+import { LocaleTranslation } from './locale.translation.model';
+import { TranslatableResource } from './translatable.resource.model';
 
-export class Locale extends Resource
+export class Locale extends TranslatableResource
 {
     public id: number;
     public code: string;
-    public name: string;
+    public translation: LocaleTranslation;
+    public translations: LocaleTranslation[];
 
     protected initialize(data?: any): void
     {
         this.id = parseInt(data.id) || -1;
         this.code = data.code || '';
-        this.name = this.getName(data);
     }
 
-    protected getName(data?: any): string
+    protected initializeTranslations(data?: any): void
     {
-        if (!data || !data.translation) {
-            return '';
-        }
-
-        return data.translation.name;
+        //
     }
 }
