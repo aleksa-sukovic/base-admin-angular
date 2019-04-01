@@ -32,5 +32,13 @@ export abstract class ResourceService<Model extends Resource>
             )
     }
 
+    one(id: number, params?: any): Observable<Model>
+    {
+        return this.apiService.get(this.path + '/' + id, params)
+            .pipe(
+                map(data => this.convert(data.body.data))
+            );
+    }
+
     protected abstract convert(data: any): Model;
 }
