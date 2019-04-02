@@ -1,7 +1,7 @@
 import { LocaleTranslation } from './locale.translation.model';
 import { TranslatableResource } from './translatable.resource.model';
 
-export class Locale extends TranslatableResource
+export class Locale extends TranslatableResource<Locale, LocaleTranslation>
 {
     public id: number;
     public code: string;
@@ -10,12 +10,17 @@ export class Locale extends TranslatableResource
 
     protected initialize(data?: any): void
     {
-        this.id = parseInt(data.id) || -1;
-        this.code = data.code || '';
+        this.id = this.getIntValue('id', data);
+        this.code = this.getStringValue('code', data);
     }
 
-    protected initializeTranslations(data?: any): void
+    protected initializeTranslation(data?: any): LocaleTranslation
     {
-        //
+        return new LocaleTranslation({
+            id: this.getIntValue('id', data),
+            name: this.getStringValue('name', data),
+            locale_id: this.getIntValue('locale_id', data),
+            locale_parent_id: this.getIntValue('locale_parent_id', data)
+        });
     }
 }

@@ -7,7 +7,7 @@ import { Injector, Injectable } from '@angular/core';
 @Injectable({
     providedIn: 'root'
 })
-export abstract class ResourceService<Model extends Resource>
+export abstract class ResourceService<Model extends Resource<Model>>
 {
     protected apiService: ApiService;
 

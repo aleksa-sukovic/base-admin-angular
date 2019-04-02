@@ -1,6 +1,6 @@
 import { Resource } from './resource.model';
 
-export class LocaleTranslation extends Resource
+export class LocaleTranslation extends Resource<LocaleTranslation>
 {
     public id: number;
     public locale_parent_id: number;

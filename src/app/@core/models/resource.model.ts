@@ -1,4 +1,4 @@
-export abstract class Resource
+export abstract class Resource<Model>
 {
     public id: number;
     public raw: any;
@@ -10,19 +10,20 @@ export abstract class Resource
         this.raw = data;
     }
 
-    protected getTranslationValue(key: string, data?: any): string
+    protected getStringValue(key: string, data?: any): string
     {
-        if (!data || !data.translation) {
-            return '';
-        }
-
-        return this.getValue(key, data.translation);
+        return this.getValue(key, data) || '';
     }
 
-    protected getValue(key: string, data?: any): string
+    protected getIntValue(key: string, data?: any): number
     {
-        if (!data || !data[key]) {
-            return '';
+        return parseInt(this.getValue(key, data)) || 0;
+    }
+
+    private getValue(key: string, data?: any): string
+    {
+        if (!data && !data[key]) {
+            return null;
         }
 
         return data[key];
