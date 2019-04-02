@@ -9,5 +9,6 @@
 $nb-themes: nb-register-theme((
     /* Sidebar */
     menu-icon-margin: 0 0.7rem 0,
-    menu-item-padding: 0.675rem 0.5rem 0.675rem 0.5rem
+    menu-item-padding: 0.675rem 0.5rem 0.675rem 0.5rem,
+    menu-icon-font-size: 1.8rem
 ), corporate, corporate);

@@ -9,8 +9,25 @@ export class SidebarMenuService
         return [
             {
                 title: 'Dashboard',
-                link: '/dashboard',
-                icon: 'fas fa-tachometer-alt'
+                expanded: false,
+                icon: 'fas fa-tachometer-alt',
+                children: [
+                    {
+                        title: 'View Dashboard',
+                        link: '/dashboard'
+                    }
+                ]
+            },
+            {
+                title: 'Locale',
+                expanded: false,
+                icon: 'fas fa-language',
+                children: [
+                    {
+                        title: 'All Locales',
+                        link: '/locales'
+                    }
+                ]
             }
         ];
     }
