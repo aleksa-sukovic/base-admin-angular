@@ -1,4 +1,4 @@
-import { Resource } from './resource.model';
+import { Resource } from '../../../@core/models/resource.model';
 
 export class LocaleTranslation extends Resource<LocaleTranslation>
 {

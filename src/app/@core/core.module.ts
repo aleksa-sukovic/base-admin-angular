@@ -1,6 +1,6 @@
 import { NgModule, Optional, SkipSelf, APP_INITIALIZER } from '@angular/core';
 import { ModuleWithProviders } from '@angular/compiler/src/core';
-import { LocaleService } from './services/locale.service';
+import { LocaleService } from '../@modules/locale/services/locale.service';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './services/api.service';
 import { Initializer } from './services/initializer.service';

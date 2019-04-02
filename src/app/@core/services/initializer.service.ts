@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LocaleService } from './locale.service';
+import { LocaleService } from '../../@modules/locale/services/locale.service';
 
 @Injectable({
     providedIn: 'root'

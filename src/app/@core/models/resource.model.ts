@@ -10,6 +10,8 @@ export abstract class Resource<Model>
         this.raw = data;
     }
 
+    protected abstract initialize(data?: any): void;
+
     protected getStringValue(key: string, data?: any): string
     {
         return this.getValue(key, data) || '';
@@ -28,6 +30,4 @@ export abstract class Resource<Model>
 
         return data[key];
     }
-
-    protected abstract initialize(data?: any): void;
 }

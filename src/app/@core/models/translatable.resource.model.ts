@@ -13,7 +13,7 @@ export abstract class TranslatableResource<Model, TranslationModel> extends Reso
             this.translation = this.initializeTranslation(data.translation);
         }
 
-        if (data && data.translations) {
+        if (data && data.translations && data.translations.data) {
             this.initializeTranslations(data);
         }
     }
@@ -23,7 +23,7 @@ export abstract class TranslatableResource<Model, TranslationModel> extends Reso
 
     protected initializeTranslations(data?: any): void
     {
-        for (let translationData of data.translations) {
+        for (let translationData of data.translations.data) {
             this.translations.push(this.initializeTranslation(translationData));
         }
     }

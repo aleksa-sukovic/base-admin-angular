@@ -1,5 +1,5 @@
 import { Injectable, Injector } from '@angular/core';
-import { ResourceService } from './resource.service';
+import { ResourceService } from '../../../@core/services/resource.service';
 import { Locale } from '../models/locale.model';
 
 @Injectable({

@@ -1,5 +1,5 @@
 import { LocaleTranslation } from './locale.translation.model';
-import { TranslatableResource } from './translatable.resource.model';
+import { TranslatableResource } from '../../../@core/models/translatable.resource.model';
 
 export class Locale extends TranslatableResource<Locale, LocaleTranslation>
 {
