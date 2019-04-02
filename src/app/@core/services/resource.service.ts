@@ -65,5 +65,21 @@ export abstract class ResourceService<Model extends Resource<Model>>
             );
     }
 
+    delete(model: Model): Observable<Model>
+    {
+        return this.apiService.delete(this.path + '/' + model.id)
+            .pipe(
+                map(data => this.convert(data.body.data))
+            );
+    }
+
+    deleteById(id: number): Observable<Model>
+    {
+        return this.apiService.delete(this.path + '/' + id)
+            .pipe(
+                map(data => this.convert(data.body.data))
+            );
+    }
+
     protected abstract convert(data: any): Model;
 }

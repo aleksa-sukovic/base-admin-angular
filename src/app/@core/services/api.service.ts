@@ -43,6 +43,16 @@ export class ApiService
         });
     }
 
+    public delete(path: string): Observable<HttpResponse<any>>
+    {
+        return this.http.delete(this.getPath(path), {
+            observe: 'response',
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json'
+            })
+        });
+    }
+
     protected getPath(path: string)
     {
         if (path.indexOf('http') !== -1) {
