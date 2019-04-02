@@ -9,6 +9,7 @@ import { AppRoute } from './app.routing';
 import { CoreModule } from './@core/core.module';
 import { SharedModule } from './@shared/shared.module';
 import { DashboardModule } from './@modules/dashboard/dashboard.module';
+import { LocaleModule } from './@modules/locale/locale.module';
 
 @NgModule({
     declarations: [
@@ -24,6 +25,7 @@ import { DashboardModule } from './@modules/dashboard/dashboard.module';
 
         // Custom
         DashboardModule,
+        LocaleModule,
 
         // 3rd party
         BrowserModule,
