@@ -2,6 +2,7 @@ import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbCardModule, NbMenuModule } from '@nebular/theme';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
 
@@ -9,7 +10,8 @@ const NB_MODULES = [
     NbLayoutModule,
     NbSidebarModule,
     NbCardModule,
-    NbMenuModule
+    NbMenuModule,
+    NgbModule
 ];
 
 const NB_THEME_PROVIDERS = [

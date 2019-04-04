@@ -1,14 +1,12 @@
 @import '~@nebular/theme/styles/theming';
 @import '~@nebular/theme/styles/themes/corporate';
+@import './tables';
+@import './tables';
 
-// Sidebar top padding
-.main-container .scrollable {
-    padding-top: 0 !important;
-}
 
 $nb-themes: nb-register-theme((
-    /* Sidebar */
-    menu-icon-margin: 0 0.7rem 0,
-    menu-item-padding: 0.675rem 0.5rem 0.675rem 0.5rem,
-    menu-icon-font-size: 1.8rem
+/* Sidebar */
+menu-icon-margin: 0 0.7rem 0,
+menu-item-padding: 0.675rem 0.5rem 0.675rem 0.5rem,
+menu-icon-font-size: 1.8rem
 ), corporate, corporate);

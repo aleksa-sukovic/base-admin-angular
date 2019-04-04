@@ -1,0 +1,22 @@
+th[sortable].desc:before, th[sortable].asc:before
+{
+    font-family: "Font Awesome 5 Free";
+
+    display: block;
+    width: 22px;
+    height: 22px;
+    background-size: 22px;
+
+    float: left;
+    margin-left: -22px;
+}
+
+th[sortable].asc:before
+{
+    content: '\f161';
+}
+
+th[sortable].desc:before
+{
+    content: '\f160';
+}
