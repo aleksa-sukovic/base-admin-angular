@@ -14,7 +14,8 @@ import { SharedModule } from 'src/app/@shared/shared.module';
         RouterModule,
         LocaleRoute,
         ThemeModule,
-        SharedModule
+        SharedModule,
+        RouterModule
     ],
     providers: [
         LocaleService
