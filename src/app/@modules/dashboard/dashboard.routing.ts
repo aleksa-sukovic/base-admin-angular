@@ -6,4 +6,4 @@ const routes: Routes = [
     { path: 'dashboard', component: Dashboard },
 ];
 
-export const DashboardRoute: ModuleWithProviders = RouterModule.forRoot(routes);
+export const DashboardRoute: ModuleWithProviders = RouterModule.forChild(routes);

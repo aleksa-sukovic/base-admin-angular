@@ -6,4 +6,4 @@ const routes: Routes = [
     { path: 'locales', component: LocaleList }
 ];
 
-export const LocaleRoute: ModuleWithProviders = RouterModule.forRoot(routes);
+export const LocaleRoute: ModuleWithProviders = RouterModule.forChild(routes);
