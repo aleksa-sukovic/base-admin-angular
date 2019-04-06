@@ -1,3 +1,6 @@
+/*
+    Table Header Sorting
+*/
 th[sortable].desc, th[sortable].asc
 {
     padding-left: 35px !important;
@@ -26,14 +29,18 @@ th[sortable].desc:before
     content: '\f160';
 }
 
+/*
+    Table Header hover
+*/
 .thead-dark th
 {
     background-color: #111218 !important;
+}
 
-    &:hover {
-        cursor: pointer;
-        background-color:  #575757 !important;
-    }
+.thead-dark th[sortable]:hover
+{
+    cursor: pointer;
+    background-color:  #575757 !important;
 }
 
 td:hover
@@ -44,4 +51,23 @@ td:hover
 .table-actions
 {
     width: 25px !important;
+}
+
+/*
+Pagination
+*/
+.pagination .active a
+{
+    background-color: #111218 !important;
+    border-color: #111218 !important;
+
+    &:hover {
+        color: white !important;
+    }
+}
+
+.pagination .disabled a
+{
+    background-color: rgb(238, 238, 238) !important;
+    color: rgb(223, 223, 223) !important;
 }
