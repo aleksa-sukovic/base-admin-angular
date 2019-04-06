@@ -1,0 +1,32 @@
+<nav>
+
+    <ul class="pagination justify-content-center" *ngIf="numberOfPages < 10">
+        <li *ngFor="let page of createRange(numberOfPages)" class="page-item"
+            [ngClass]="{ 'active': currentPage == page }">
+            <a (click)="navigateToPage(page)" class="page-link clickable">{{ page }}</a>
+        </li>
+    </ul>
+
+    <ul class="pagination justify-content-center" *ngIf="numberOfPages >= 10">
+        <!-- Previous Page -->
+        <li class="page-item" [ngClass]="{ 'disabled': currentPage - 2 <= 0 }">
+            <a (click)="previousPage()" class="page-link" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+
+        <!-- Visible Pages -->
+        <li *ngFor="let page of createInfiniteRange(currentPage)" class="page-item"
+            [ngClass]="{ 'active': currentPage == page }">
+            <a (click)="navigateToPage(page)" class="page-link clickable">{{ page }}</a>
+        </li>
+
+        <!-- Next Page -->
+        <li class="page-item" [ngClass]="{ 'disabled': currentPage + 2 > numberOfPages }">
+            <a (click)="nextPage()" class="page-link" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+
+</nav>
