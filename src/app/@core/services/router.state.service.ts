@@ -1,37 +1,40 @@
 import { Injectable } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { QueryParamsHandling } from '@angular/router/src/config';
+import { Router } from '@angular/router';
 
 @Injectable({
     providedIn: 'root'
 })
 export class RouterStateService
 {
-    constructor(private router: Router, private route: ActivatedRoute)
+    public queryParams: any;
+
+    constructor(private router: Router)
     {
-        //
+        this.queryParams = {};
     }
 
-    public navigate(commands: any[], queryParams: any = {}, queryParamsHandling: QueryParamsHandling = ''): void
+    public navigate(commands: any[]): void
     {
-        let params = this.parseQueryParams(queryParams);
+        let params = this.parseQueryParams();
 
         this.router.navigate(commands, {
             queryParams: params,
-            queryParamsHandling: queryParamsHandling
+            queryParamsHandling: ''
         });
     }
 
-    protected parseQueryParams(params: any): any
+    protected parseQueryParams(): any
     {
-        const queryParams = {};
+        let params = {};
 
-        for (let param in params) {
-            if (param && param.length) {
-                queryParams[param] = params[param];
+        for (let key in this.queryParams) {
+            if (parseInt(this.queryParams[key]) || parseInt(this.queryParams[key]) == 0) {
+                params[key] = this.queryParams[key];
+            } else if (this.queryParams[key] && this.queryParams[key].length) {
+                params[key] = this.queryParams[key];
             }
         }
 
-        return queryParams;
+        return params;
     }
 }
