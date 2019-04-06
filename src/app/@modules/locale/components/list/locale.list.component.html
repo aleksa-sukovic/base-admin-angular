@@ -1,4 +1,18 @@
-<table class="table table-hover table-bordered">
+<!-- Controls -->
+<div class="row justify-content-end">
+    <div class="col-sm-3 align-self-end">
+        <div class="form-group">
+            <select [(ngModel)]="perPage" (change)="onPerPageChange()" class="form-control">
+                <option>5</option>
+                <option>10</option>
+                <option>20</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<!-- Data -->
+<table class="table table-hover table-bordered" *ngIf="data && data.length">
     <thead class="thead-dark">
         <tr>
             <th>Actions</th>
@@ -19,8 +33,25 @@
     </tbody>
 </table>
 
+<!-- Pagination -->
+<table-pagination
+    [perPage]="perPage"
+    [totalCount]="totalCount"
+    *ngIf="data && data.length"
+    (onPageSelect)="onPageSelect($event)">
+</table-pagination>
+
+<!-- Loader -->
 <div class="text-center" *ngIf="!data">
     <div class="spinner-border text-secondary" role="status">
         <span class="sr-only">Loading...</span>
     </div>
 </div>
+
+<!-- No Result -->
+<nb-card *ngIf="data && !data.length">
+    <nb-card-header>No results</nb-card-header>
+    <nb-card-body>
+        We're sorry, there are no results to show.
+    </nb-card-body>
+</nb-card>

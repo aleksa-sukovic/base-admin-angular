@@ -16,18 +16,27 @@ export abstract class ResourceList<Model extends Resource<Model>, ModelService e
     protected service: ModelService;
 
     protected data: Model[];
+    protected totalCount: number;
+    protected perPage: number;
+    protected url: string;
 
     constructor(injector: Injector)
     {
         this.route = injector.get(ActivatedRoute);
         this.router = injector.get(Router);
         this.routerState = injector.get(RouterStateService);
+
+        this.totalCount = 0;
+        this.perPage = 5;
+        this.url = this.router.url.split('?')[0];
     }
 
     protected getData(params: any)
     {
         this.service.all(params).subscribe(data => {
-            this.data = data;
+            this.data = data.getCollection();
+
+            this.totalCount = parseInt(data.getRaw().count);
         });
     }
 
@@ -61,24 +70,43 @@ export abstract class ResourceList<Model extends Resource<Model>, ModelService e
             params.include = 'translation,translations';
         }
 
+        if (!params['additional_fields']) {
+            params.additional_fields = 'count';
+        }
+
         return params;
+    }
+
+    protected onPageSelect(event: any): void
+    {
+        this.routerState.queryParams.offset = event.offset;
+        this.routerState.queryParams.limit = event.limit;
+
+        this.routerState.navigate([ this.url ]);
     }
 
     protected onSort({ attribute, direction }: SortEvent)
     {
         this.clearHeaders(attribute);
-        let url = this.router.url.split('?')[0];
 
         if (direction && direction.length) {
-            this.routerState.navigate([ url ], {
-                orderby: attribute,
-                order: direction
-            });
+            this.routerState.queryParams.orderby = attribute;
+            this.routerState.queryParams.order = direction;
+            this.routerState.navigate([ this.url ]);
 
             return;
         }
 
-        this.routerState.navigate([ url ]);
+        this.routerState.queryParams.orderby = '';
+        this.routerState.queryParams.order = '';
+        this.routerState.navigate([ this.url ]);
+    }
+
+    protected onPerPageChange()
+    {
+        this.routerState.queryParams.limit = this.perPage;
+
+        this.routerState.navigate([this.url]);
     }
 
     protected setHeaders(params: any): void
