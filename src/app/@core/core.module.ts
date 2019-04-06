@@ -8,6 +8,7 @@ import { SidebarMenuService } from './services/sidebar.menu.service';
 import { Sidebar } from './components/sidebar.component';
 import { ThemeModule } from '../@theme/theme.module';
 import { NbLayoutModule } from '@nebular/theme';
+import { RouterStateService } from './services/router.state.service';
 
 export function initialize(initializer: Initializer)
 {
@@ -47,6 +48,7 @@ export class CoreModule
                 LocaleService,
                 ApiService,
                 SidebarMenuService,
+                RouterStateService,
                 {
                     provide: APP_INITIALIZER,
                     useFactory: initialize,
