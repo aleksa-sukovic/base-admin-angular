@@ -4,7 +4,7 @@ export type SortDirection = 'asc' | 'desc' | '';
 
 export interface SortEvent
 {
-    column: string;
+    attribute: string;
     direction: SortDirection;
 }
 
@@ -32,6 +32,6 @@ export class SortableTableHeader
     {
         this.direction = this.rotateDirections[this.direction];
 
-        this.sort.emit({ column: this.sortable, direction: this.direction });
+        this.sort.emit({ attribute: this.sortable, direction: this.direction });
     }
 }

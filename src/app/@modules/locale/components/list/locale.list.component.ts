@@ -2,7 +2,6 @@ import { Component, Injector } from '@angular/core';
 import { ResourceList } from 'src/app/@shared/components/resource-list/resource.list.component';
 import { Locale } from '../../models/locale.model';
 import { LocaleService } from '../../services/locale.service';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'locale-list',
@@ -11,8 +10,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class LocaleList extends ResourceList<Locale, LocaleService>
 {
-    constructor(activatedRouter: ActivatedRoute, service: LocaleService)
+    constructor(injector: Injector)
     {
-        super(activatedRouter, service);
+        super(injector);
+
+        this.service = injector.get(LocaleService);
     }
 }

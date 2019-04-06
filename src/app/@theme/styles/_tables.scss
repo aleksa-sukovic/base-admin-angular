@@ -1,11 +1,16 @@
+th[sortable].desc, th[sortable].asc
+{
+    padding-left: 35px !important;
+}
+
 th[sortable].desc:before, th[sortable].asc:before
 {
     font-family: "Font Awesome 5 Free";
 
     display: block;
-    width: 22px;
-    height: 22px;
-    background-size: 22px;
+    width: 15px;
+    height: 15px;
+    background-size: 15px;
 
     float: left;
     margin-left: -22px;
@@ -24,4 +29,19 @@ th[sortable].desc:before
 .thead-dark th
 {
     background-color: #111218 !important;
+
+    &:hover {
+        cursor: pointer;
+        background-color:  #575757 !important;
+    }
+}
+
+td:hover
+{
+    cursor: pointer;
+}
+
+.table-actions
+{
+    width: 25px !important;
 }
