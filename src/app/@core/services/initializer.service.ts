@@ -15,7 +15,7 @@ export class Initializer
     {
         return new Promise<void>(resolve => {
             this.localeService.all({ include: 'translation' }).subscribe(locales => {
-                this.localeService.init(locales);
+                this.localeService.init(locales.getCollection());
 
                 resolve();
             });
