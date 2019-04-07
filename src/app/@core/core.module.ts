@@ -1,14 +1,14 @@
 import { NgModule, Optional, SkipSelf, APP_INITIALIZER } from '@angular/core';
 import { ModuleWithProviders } from '@angular/compiler/src/core';
 import { LocaleService } from '../@modules/locale/services/locale.service';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { ApiService } from './services/api.service';
 import { Initializer } from './services/initializer.service';
 import { SidebarMenuService } from './services/sidebar.menu.service';
-import { Sidebar } from './components/sidebar.component';
 import { ThemeModule } from '../@theme/theme.module';
 import { NbLayoutModule } from '@nebular/theme';
 import { RouterStateService } from './services/router.state.service';
+import {LocaleInterceptor} from './interceptors/locale.interceptor';
 
 export function initialize(initializer: Initializer)
 {
@@ -17,7 +17,7 @@ export function initialize(initializer: Initializer)
 
 @NgModule({
     declarations: [
-        Sidebar
+        //
     ],
     imports: [
         HttpClientModule,
@@ -28,7 +28,7 @@ export function initialize(initializer: Initializer)
         //
     ],
     exports: [
-        Sidebar
+        //
     ]
 })
 export class CoreModule
@@ -54,8 +54,13 @@ export class CoreModule
                     useFactory: initialize,
                     deps: [Initializer, LocaleService],
                     multi: true
+                },
+                {
+                    provide: HTTP_INTERCEPTORS,
+                    useClass: LocaleInterceptor,
+                    multi: true
                 }
             ]
-        }
+        };
     }
 }
