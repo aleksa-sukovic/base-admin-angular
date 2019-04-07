@@ -5,7 +5,7 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
   templateUrl: './table-actions.component.html',
   styleUrls: ['./table-actions.component.scss']
 })
-export class TableActions
+export class TableActionsComponent
 {
     @Input() resource: any;
     @Output() onDelete = new EventEmitter();

@@ -4,6 +4,8 @@
         <a href="" (click)="toggleSidebar()">
             <i class="fas fa-bars"></i>
         </a>
+
+        <language-picker (languageChange)="onLanguageChange()"></language-picker>
     </nb-layout-header>
 
     <nb-sidebar>

@@ -1,5 +1,5 @@
 import { Component, Injector } from '@angular/core';
-import { ResourceList } from 'src/app/@shared/components/resource-list/resource.list.component';
+import { ResourceList } from 'src/app/@shared/components/resource-list/resource-list.component';
 import { Locale } from '../../models/locale.model';
 import { LocaleService } from '../../services/locale.service';
 
@@ -8,7 +8,7 @@ import { LocaleService } from '../../services/locale.service';
     templateUrl: './locale.list.component.html',
     styleUrls: ['./locale.list.component.scss']
 })
-export class LocaleList extends ResourceList<Locale, LocaleService>
+export class LocaleListComponent extends ResourceList<Locale, LocaleService>
 {
     constructor(injector: Injector)
     {

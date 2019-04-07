@@ -1,9 +1,9 @@
 <div class="d-flex justify-content-center">
     <span
-        delete-resource
+        deleteResource
         [resource]="resource"
         [title]="resource.translation.name"
-        (onDelete)="onDelete.emit()"
+        (delete)="onDelete.emit()"
         >
         <i class="fas fa-trash-alt icon icon-trash"></i>
     </span>

@@ -1,0 +1,17 @@
+.select-language-picker
+{
+    height: 20px !important;
+    padding: 0.5rem !important;
+    padding-right: 0 !important;
+
+    box-sizing: border-box;
+    position: absolute;
+    right: 2.25rem;
+    top: 13px;
+
+    & select {
+        box-sizing: border-box;
+        height: 35px !important;
+        padding: 5px !important;
+    }
+}

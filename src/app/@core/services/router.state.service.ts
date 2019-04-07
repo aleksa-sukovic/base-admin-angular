@@ -15,20 +15,26 @@ export class RouterStateService
 
     public navigate(commands: any[]): void
     {
-        let params = this.parseQueryParams();
-
         this.router.navigate(commands, {
-            queryParams: params,
+            queryParams: this.parseQueryParams(),
+            queryParamsHandling: ''
+        });
+    }
+
+    public refresh(): void
+    {
+        this.router.navigate([ this.router.url.split('?')[0] ], {
+            queryParams: this.parseQueryParams(),
             queryParamsHandling: ''
         });
     }
 
     protected parseQueryParams(): any
     {
-        let params = {};
+        const params = {};
 
-        for (let key in this.queryParams) {
-            if (parseInt(this.queryParams[key]) || parseInt(this.queryParams[key]) == 0) {
+        for (const key in this.queryParams) {
+            if (parseInt(this.queryParams[key], 10) || parseInt(this.queryParams[key], 10) === 0) {
                 params[key] = this.queryParams[key];
             } else if (this.queryParams[key] && this.queryParams[key].length) {
                 params[key] = this.queryParams[key];
@@ -36,5 +42,17 @@ export class RouterStateService
         }
 
         return params;
+    }
+
+    public addQueryParams(params: any): void
+    {
+        for (const key in params) {
+            this.queryParams[key] = params[key];
+        }
+    }
+
+    public resetQueryParams(): void
+    {
+        this.queryParams = {};
     }
 }

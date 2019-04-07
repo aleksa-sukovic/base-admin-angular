@@ -23,11 +23,17 @@ export class LocaleService extends ResourceService<Locale>
     public setCurrent(locale: Locale): void
     {
         this.current = locale;
+
+        localStorage.setItem('locale', locale.code);
     }
 
-    public getCurrent(): Locale
+    public setCurrentByCode(code: string): void
     {
-        return this.current;
+        const found = this.available.find(data => data.code === code);
+
+        if (found) {
+            this.setCurrent(found);
+        }
     }
 
     public init(locales: Locale[]): void

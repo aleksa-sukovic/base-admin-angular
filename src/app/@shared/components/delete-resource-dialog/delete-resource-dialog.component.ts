@@ -6,11 +6,11 @@ import { NbDialogRef } from '@nebular/theme';
   templateUrl: './delete-resource-dialog.component.html',
   styleUrls: ['./delete-resource-dialog.component.scss']
 })
-export class DeleteResourceDialog
+export class DeleteResourceDialogComponent
 {
-    @Input() protected title: string = '';
+    @Input() protected title = '';
 
-    constructor(protected dialogRef: NbDialogRef<DeleteResourceDialog>)
+    constructor(protected dialogRef: NbDialogRef<DeleteResourceDialogComponent>)
     {
         //
     }

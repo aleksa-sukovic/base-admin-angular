@@ -30,9 +30,10 @@ import { LocaleModule } from './@modules/locale/locale.module';
         // 3rd party
         BrowserModule,
         BrowserAnimationsModule,
-        NbThemeModule.forRoot({ name: 'corporate' }),
+        NbThemeModule.forRoot({name: 'corporate'}),
         NbLayoutModule,
-        ThemeModule.forRoot()
+        ThemeModule.forRoot(),
+        ThemeModule
     ],
     providers: [],
     bootstrap: [AppComponent]

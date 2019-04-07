@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { Sidebar } from './@core/components/sidebar.component';
+import {SidebarComponent} from './@shared/components/sidebar/sidebar.component';
+import {RouterStateService} from './@core/services/router.state.service';
 
 @Component({
   selector: 'app-root',
@@ -8,9 +9,9 @@ import { Sidebar } from './@core/components/sidebar.component';
 })
 export class AppComponent
 {
-    @ViewChild(Sidebar) protected sidebarComponent: Sidebar;
+    @ViewChild(SidebarComponent) protected sidebarComponent: SidebarComponent;
 
-    constructor()
+    constructor(private routerStateService: RouterStateService)
     {
        //
     }
@@ -20,5 +21,10 @@ export class AppComponent
         this.sidebarComponent.toggle();
 
         return false;
+    }
+
+    protected onLanguageChange(): void
+    {
+        this.routerStateService.refresh();
     }
 }

@@ -1,14 +1,10 @@
 <!-- Controls -->
-<div class="row justify-content-end">
-    <div class="col-sm-1 align-self-end">
-        <div class="form-group select-form-group">
-            <select [(ngModel)]="perPage" (change)="onPerPageChange()" class="form-control">
-                <option>5</option>
-                <option>10</option>
-                <option>20</option>
-            </select>
-        </div>
-    </div>
+<div class="form-group select-form-group float-right">
+    <select [(ngModel)]="perPage" (change)="onPerPageChange()" class="form-control">
+        <option>5</option>
+        <option>10</option>
+        <option>20</option>
+    </select>
 </div>
 
 <!-- Data -->
@@ -38,7 +34,7 @@
     [perPage]="perPage"
     [totalCount]="totalCount"
     *ngIf="data && data.length"
-    (onPageSelect)="onPageSelect($event)">
+    (pageSelect)="onPageSelect($event)">
 </table-pagination>
 
 <!-- Loader -->

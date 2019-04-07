@@ -6,11 +6,11 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './table-pagination.component.html',
   styleUrls: ['./table-pagination.component.scss']
 })
-export class TablePagination implements OnInit
+export class TablePaginationComponent implements OnInit
 {
     @Input() protected totalCount: number;
-    @Input() protected perPage: number = 5;
-    @Output() protected onPageSelect = new EventEmitter();
+    @Input() protected perPage = 5;
+    @Output() protected pageSelect = new EventEmitter();
 
     protected numberOfPages: number;
     protected currentPage: number;
@@ -23,12 +23,12 @@ export class TablePagination implements OnInit
     ngOnInit(): void
     {
         this.route.queryParamMap.subscribe(params => {
-            let limit: any = params.has('limit') ? params.get('limit') : this.perPage;
-            let offset: any = params.has('offset') ? params.get('offset') : 0;
+            const limit: any = params.has('limit') ? params.get('limit') : this.perPage;
+            const offset: any = params.has('offset') ? params.get('offset') : 0;
 
             this.perPage = limit;
-            this.numberOfPages = this.getNumberOfPages(parseInt(limit), parseInt(offset));
-            this.currentPage = this.getCurrentPage(parseInt(limit), parseInt(offset));
+            this.numberOfPages = this.getNumberOfPages(parseInt(limit, 10), parseInt(offset, 10));
+            this.currentPage = this.getCurrentPage(parseInt(limit, 10), parseInt(offset, 10));
 
             this.navigateToPage(this.currentPage);
         });
@@ -56,7 +56,7 @@ export class TablePagination implements OnInit
 
     protected navigateToPage(page: number)
     {
-        this.onPageSelect.emit({
+        this.pageSelect.emit({
             limit: this.perPage,
             offset: this.perPage * (page - 1)
         });
@@ -77,11 +77,11 @@ export class TablePagination implements OnInit
         }
     }
 
-    protected createRange(number: number, startIndex: number = 1): number[]
+    protected createRange(max: number, startIndex: number = 1): number[]
     {
-        var items: number[] = [];
+        const items: number[] = [];
 
-        for(var i = startIndex; i <= number; i++){
+        for (let i = startIndex; i <= max; i++) {
            items.push(i);
         }
 

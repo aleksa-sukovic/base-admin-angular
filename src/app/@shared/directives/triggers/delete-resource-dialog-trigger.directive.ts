@@ -1,15 +1,15 @@
 import { Directive, HostListener, Input, Output, EventEmitter } from '@angular/core';
 import { NbDialogService } from '@nebular/theme';
-import { DeleteResourceDialog } from '../../components/delete-resource-dialog/delete-resource-dialog.component';
-2
+import { DeleteResourceDialogComponent } from '../../components/delete-resource-dialog/delete-resource-dialog.component';
+
 @Directive({
-    selector: '[delete-resource]'
+    selector: '[deleteResource]'
 })
-export class DeleteResourceDialogTrigger
+export class DeleteResourceDialogTriggerDirective
 {
     @Input() resource: any;
     @Input() title: string;
-    @Output() onDelete = new EventEmitter();
+    @Output() delete = new EventEmitter();
 
     @HostListener('click') public onClick()
     {
@@ -23,14 +23,14 @@ export class DeleteResourceDialogTrigger
 
     protected openDialog()
     {
-        this.dialogService.open(DeleteResourceDialog, {
+        this.dialogService.open(DeleteResourceDialogComponent, {
             context: {
                 resource: this.resource,
                 title: this.title
             }
         }).onClose.subscribe(data => {
             if (data && data.delete) {
-                this.onDelete.emit();
+                this.delete.emit();
             }
         });
     }

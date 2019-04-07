@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { NbMenuItem, NbSidebarService } from '@nebular/theme';
-import { SidebarMenuService } from '../services/sidebar.menu.service';
+import {SidebarMenuService} from '../../../@core/services/sidebar.menu.service';
 
 @Component({
   selector: 'sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
-export class Sidebar
+export class SidebarComponent
 {
     protected items: NbMenuItem[]
 
