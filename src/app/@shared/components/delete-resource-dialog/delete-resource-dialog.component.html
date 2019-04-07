@@ -1,0 +1,14 @@
+<nb-card class="ng-star-inserted">
+    <nb-card-header>
+        Delete '{{ title }}'
+    </nb-card-header>
+
+    <nb-card-body>
+        Are you sure you want to delete this item ?
+    </nb-card-body>
+
+    <nb-card-footer >
+        <button class="btn btn-danger mr-3" (click)="closeDialog({delete: true})">Delete</button>
+        <button class="btn btn-default text-dark" (click)="closeDialog({delete: false})">Cancel</button>
+    </nb-card-footer>
+</nb-card>

@@ -5,17 +5,24 @@ import { RouterModule } from '@angular/router';
 import { SortableTableHeader } from './directives/tables/sortable.table.header.directive';
 import { TableActions } from './components/table-actions/table-actions.component';
 import { TablePagination } from './components/table-pagination/table-pagination.component';
+import { DeleteResourceDialog } from './components/delete-resource-dialog/delete-resource-dialog.component';
+import { DeleteResourceDialogTrigger } from './directives/triggers/delete-resource-dialog-trigger.directive';
 
 @NgModule({
     declarations: [
         PageNotFound,
         SortableTableHeader,
         TableActions,
-        TablePagination
+        TablePagination,
+        DeleteResourceDialog,
+        DeleteResourceDialogTrigger,
+    ],
+    entryComponents: [
+        DeleteResourceDialog
     ],
     imports: [
         ThemeModule,
-        RouterModule
+        RouterModule,
     ],
     providers: [
         //
@@ -24,7 +31,9 @@ import { TablePagination } from './components/table-pagination/table-pagination.
         PageNotFound,
         SortableTableHeader,
         TableActions,
-        TablePagination
+        TablePagination,
+        DeleteResourceDialog,
+        DeleteResourceDialogTrigger
     ]
 })
 export class SharedModule

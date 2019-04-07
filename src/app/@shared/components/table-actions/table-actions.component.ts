@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'table-actions',
@@ -7,19 +7,13 @@ import { Component, Output, EventEmitter } from '@angular/core';
 })
 export class TableActions
 {
+    @Input() resource: any;
     @Output() onDelete = new EventEmitter();
     @Output() onEdit = new EventEmitter();
 
-    protected onClick(event: Event, action: string)
+    protected onEditEvent(event: Event)
     {
-        switch(action) {
-            case 'edit':
-                this.onEdit.emit();
-                break;
-            case 'delete':
-                this.onDelete.emit();
-                break;
-        }
+        this.onEdit.emit();
 
         event.stopPropagation();
     }

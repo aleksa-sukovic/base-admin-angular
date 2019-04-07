@@ -22,9 +22,9 @@
         </tr>
     </thead>
     <tbody *ngIf="data">
-        <tr *ngFor="let locale of data" (click)="viewResource(locale)">
+        <tr *ngFor="let locale of data">
             <td class="table-actions">
-                <table-actions (onEdit)="viewResource(locale)" (onDelete)="deleteResource(locale)"></table-actions>
+                <table-actions [resource]="locale" (onEdit)="viewResource(locale)" (onDelete)="deleteResource(locale)"></table-actions>
             </td>
             <td>{{ locale.id }}</td>
             <td>{{ locale.translation.name }}</td>

@@ -4,6 +4,8 @@ import { Resource } from 'src/app/@core/models/resource.model';
 import { ResourceService } from 'src/app/@core/services/resource.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RouterStateService } from 'src/app/@core/services/router.state.service';
+import { NbToastrService } from '@nebular/theme';
+import { NbToastStatus } from '@nebular/theme/components/toastr/model';
 
 @Injectable()
 export abstract class ResourceList<Model extends Resource<Model>, ModelService extends ResourceService<Model>> implements OnInit
@@ -14,6 +16,7 @@ export abstract class ResourceList<Model extends Resource<Model>, ModelService e
     protected router: Router;
     protected routerState: RouterStateService;
     protected service: ModelService;
+    protected toastService: NbToastrService;
 
     protected data: Model[];
     protected totalCount: number;
@@ -25,6 +28,7 @@ export abstract class ResourceList<Model extends Resource<Model>, ModelService e
         this.route = injector.get(ActivatedRoute);
         this.router = injector.get(Router);
         this.routerState = injector.get(RouterStateService);
+        this.toastService = injector.get(NbToastrService);
 
         this.totalCount = 0;
         this.perPage = 5;
@@ -58,7 +62,13 @@ export abstract class ResourceList<Model extends Resource<Model>, ModelService e
 
     public deleteResource(resource: Model): void
     {
-        console.log('Delete resource: ' + resource.id);
+        this.service.deleteById(resource.id).subscribe(deleted => {
+            this.routerState.queryParams = {};
+
+            this.routerState.navigate([this.url]);
+
+            this.showToast('Success', 'Item deleted successfully !');
+        });
     }
 
     protected getParams(data: any): any
@@ -129,5 +139,14 @@ export abstract class ResourceList<Model extends Resource<Model>, ModelService e
                 header.direction = '';
             }
         });
+    }
+
+    protected showToast(title: string, message: string): void
+    {
+        this.toastService.show(
+            message,
+            title,
+            { status: NbToastStatus.SUCCESS }
+        );
     }
 }
