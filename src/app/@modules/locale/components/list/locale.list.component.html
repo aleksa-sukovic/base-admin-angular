@@ -1,7 +1,7 @@
 <!-- Controls -->
 <div class="row justify-content-end">
-    <div class="col-sm-3 align-self-end">
-        <div class="form-group">
+    <div class="col-sm-1 align-self-end">
+        <div class="form-group select-form-group">
             <select [(ngModel)]="perPage" (change)="onPerPageChange()" class="form-control">
                 <option>5</option>
                 <option>10</option>
@@ -12,8 +12,8 @@
 </div>
 
 <!-- Data -->
-<table class="table table-hover table-bordered" *ngIf="data && data.length">
-    <thead class="thead-dark">
+<table class="table table-hover table-bordered table-list" *ngIf="data && data.length">
+    <thead>
         <tr>
             <th>Actions</th>
             <th scope="col" sortable="id" (sort)="onSort($event)">ID</th>

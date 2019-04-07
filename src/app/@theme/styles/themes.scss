@@ -3,10 +3,13 @@
 @import './sidebar';
 @import './tables';
 @import './utils';
+@import './forms';
 
 $nb-themes: nb-register-theme((
 /* Sidebar */
 menu-icon-margin: 0 0.7rem 0,
 menu-item-padding: 0.675rem 0.5rem 0.675rem 0.5rem,
-menu-icon-font-size: 1.8rem
-), corporate, corporate);
+menu-icon-font-size: 1rem,
+sidebar-line-height	: 0.8rem,
+sidebar-header-height: 5rem
+), default, default);

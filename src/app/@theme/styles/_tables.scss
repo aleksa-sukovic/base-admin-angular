@@ -32,18 +32,30 @@ th[sortable].desc:before
 /*
     Table Header hover
 */
-.thead-dark th
+.table-list th
 {
-    background-color: #111218 !important;
+    background-color: #ffffff !important;
 }
 
-.thead-dark th[sortable]:hover
+.table-list th[sortable]:hover
 {
     cursor: pointer;
-    background-color:  #575757 !important;
+    background-color:  #fcfcfc !important;
 }
 
-td:hover
+.table-list tr:hover td
+{
+    background-color: rgb(240, 240, 240) !important;
+}
+
+.table-list td
+{
+    font-size: 0.9rem !important;
+
+    background-color: rgb(250, 250, 250) !important;
+}
+
+.table-list td:hover
 {
     cursor: pointer;
 }

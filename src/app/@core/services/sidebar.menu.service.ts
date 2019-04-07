@@ -11,12 +11,7 @@ export class SidebarMenuService
                 title: 'Dashboard',
                 expanded: false,
                 icon: 'fas fa-tachometer-alt',
-                children: [
-                    {
-                        title: 'View Dashboard',
-                        link: '/dashboard'
-                    }
-                ]
+                link: '/dashboard'
             },
             {
                 title: 'Locale',

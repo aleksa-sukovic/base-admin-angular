@@ -15,7 +15,7 @@ const NB_MODULES = [
 ];
 
 const NB_THEME_PROVIDERS = [
-    ...NbThemeModule.forRoot({ name: 'corporate' }).providers,
+    ...NbThemeModule.forRoot({ name: 'default' }).providers,
     ...NbSidebarModule.forRoot().providers,
     ...NbMenuModule.forRoot().providers
 ];

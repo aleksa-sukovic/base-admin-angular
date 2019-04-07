@@ -1,0 +1,22 @@
+.icon
+{
+    width: 18px;
+}
+
+.icon-trash
+{
+    color: rgb(235, 93, 93) !important;
+
+    &:hover {
+        color: darken($color: rgb(235, 93, 93), $amount: 20) !important;
+    }
+}
+
+.icon-edit
+{
+    color: rgb(93, 207, 235) !important;
+
+    &:hover {
+        color: darken($color: rgb(93, 207, 235), $amount: 20) !important;
+    }
+}
