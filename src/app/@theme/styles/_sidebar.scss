@@ -1,3 +1,5 @@
+@import './colors';
+
 nb-sidebar
 {
     margin-top: 2.25rem;
@@ -6,4 +8,22 @@ nb-sidebar
 .main-container .scrollable
 {
     padding-top: 0 !important;
+}
+
+nb-menu .menu-item a
+{
+    border-radius: 0 !important;
+}
+
+nb-sidebar .active
+{
+    border: none !important;
+    border-radius: 0 !important;
+    background-color: $accent !important;
+}
+
+nb-sidebar .menu-items .menu-items .active
+{
+    background-color: $white !important;
+    border: solid $accent 2px !important;
 }
