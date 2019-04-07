@@ -104,7 +104,7 @@ export abstract class ResourceList<Model extends Resource<Model>, ModelService e
 
     protected onPerPageChange()
     {
-        this.routerState.queryParams.limit = this.perPage;
+        this.routerState.addQueryParams({limit: this.perPage});
 
         this.routerState.navigate([ this.url ]);
     }

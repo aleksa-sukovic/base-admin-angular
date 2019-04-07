@@ -1,5 +1,5 @@
 <!-- Controls -->
-<div class="form-group select-form-group float-right">
+<div class="form-group select-form-group float-right" *ngIf="data && data.length">
     <select [(ngModel)]="perPage" (change)="onPerPageChange()" class="form-control">
         <option>5</option>
         <option>10</option>
