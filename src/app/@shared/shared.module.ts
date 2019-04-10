@@ -7,8 +7,8 @@ import { TableActionsComponent } from './components/table-actions/table-actions.
 import { TablePaginationComponent } from './components/table-pagination/table-pagination.component';
 import { DeleteResourceDialogComponent } from './components/delete-resource-dialog/delete-resource-dialog.component';
 import { DeleteResourceDialogTriggerDirective } from './directives/triggers/delete-resource-dialog-trigger.directive';
-import {LanguagePickerComponent} from './components/language-picker/language-picker.component';
-import {SidebarComponent} from './components/sidebar/sidebar.component';
+import { LanguagePickerComponent } from './components/language-picker/language-picker.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
     declarations: [
