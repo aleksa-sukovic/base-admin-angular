@@ -18,7 +18,8 @@ import { SharedModule } from 'src/app/@shared/shared.module';
         RouterModule
     ],
     providers: [
-        LocaleService
+        LocaleService,
+        LocaleResolver
     ],
     exports: [
         //
