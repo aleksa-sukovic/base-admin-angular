@@ -6,6 +6,7 @@
         "params",
         "processable",
         "scrollable",
-        "toastr"
+        "toastr",
+        "validators"
     ]
 }
