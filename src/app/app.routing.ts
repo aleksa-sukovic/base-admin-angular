@@ -4,6 +4,7 @@ import { PageNotFoundComponent } from './@shared/components/page-not-found/page-
 
 const routes: Routes = [
     { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+    { path: '404', component: PageNotFoundComponent },
     { path: '**', component: PageNotFoundComponent },
 ];
 
