@@ -1,6 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import {SidebarComponent} from './@shared/components/sidebar/sidebar.component';
 import {RouterStateService} from './@core/services/router.state.service';
+import { LocaleService } from './@modules/locale/services/locale.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ export class AppComponent
 {
     @ViewChild(SidebarComponent) protected sidebarComponent: SidebarComponent;
 
-    constructor(private routerStateService: RouterStateService)
+    constructor(private localeService: LocaleService, private routerStateService: RouterStateService)
     {
        //
     }
@@ -23,8 +24,15 @@ export class AppComponent
         return false;
     }
 
-    protected onLanguageChange(): void
+    protected onLanguageChange(event: any): void
     {
-        this.routerStateService.refresh();
+        this.localeService.setCurrent(event.locale);
+
+        this.localeService.all({include: 'translation,translations'}).subscribe(data => {
+            this.localeService.init(data.getCollection());
+
+            this.routerStateService.refresh();
+        });
+
     }
 }
