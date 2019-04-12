@@ -1,0 +1,5 @@
+<div class="form-group select-form-group float-right select-per-page">
+    <select [(ngModel)]="selected" (change)="onPerPageChange()" class="form-control">
+        <option *ngFor="let page of values">{{ page }}</option>
+    </select>
+</div>

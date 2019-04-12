@@ -10,6 +10,7 @@ import { DeleteResourceDialogTriggerDirective } from './directives/triggers/dele
 import { LanguagePickerComponent } from './components/language-picker/language-picker.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ResourceDetailsHeaderComponent } from './components/resource-details-header/resource-details-header.component';
+import { PerPageSelectorComponent } from './components/per-page-selector/per-page-selector.component';
 
 @NgModule({
     declarations: [
@@ -22,6 +23,7 @@ import { ResourceDetailsHeaderComponent } from './components/resource-details-he
         LanguagePickerComponent,
         SidebarComponent,
         ResourceDetailsHeaderComponent,
+        PerPageSelectorComponent
     ],
     entryComponents: [
         DeleteResourceDialogComponent
@@ -43,6 +45,7 @@ import { ResourceDetailsHeaderComponent } from './components/resource-details-he
         LanguagePickerComponent,
         SidebarComponent,
         ResourceDetailsHeaderComponent,
+        PerPageSelectorComponent
     ]
 })
 export class SharedModule
