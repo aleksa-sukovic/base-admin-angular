@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import {SidebarComponent} from './@shared/components/sidebar/sidebar.component';
-import {RouterStateService} from './@core/services/router.state.service';
+import { SidebarComponent } from './@shared/components/sidebar/sidebar.component';
+import { RouterStateService } from './@core/services/router.state.service';
 import { LocaleService } from './@modules/locale/services/locale.service';
 import { LanguagePickerComponent } from './@shared/components/language-picker/language-picker.component';
 

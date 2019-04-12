@@ -9,6 +9,7 @@ import { DeleteResourceDialogComponent } from './components/delete-resource-dial
 import { DeleteResourceDialogTriggerDirective } from './directives/triggers/delete-resource-dialog-trigger.directive';
 import { LanguagePickerComponent } from './components/language-picker/language-picker.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { ResourceDetailsHeaderComponent } from './components/resource-details-header/resource-details-header.component';
 
 @NgModule({
     declarations: [
@@ -19,7 +20,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
         DeleteResourceDialogComponent,
         DeleteResourceDialogTriggerDirective,
         LanguagePickerComponent,
-        SidebarComponent
+        SidebarComponent,
+        ResourceDetailsHeaderComponent,
     ],
     entryComponents: [
         DeleteResourceDialogComponent
@@ -39,7 +41,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
         DeleteResourceDialogComponent,
         DeleteResourceDialogTriggerDirective,
         LanguagePickerComponent,
-        SidebarComponent
+        SidebarComponent,
+        ResourceDetailsHeaderComponent,
     ]
 })
 export class SharedModule

@@ -13,12 +13,33 @@ export abstract class ResourceDetailsComponent<Model extends Resource<Model>>
 
     constructor(protected formBuilder: FormBuilder, protected route: ActivatedRoute)
     {
-        this.form = this.initializeForm();
         this.fillable = this.getFillable();
-        this.resource = this.route.snapshot.data.locale;
+        this.resource = this.route.snapshot.data.item;
+
+        this.form = this.initializeForm();
     }
 
-    abstract initializeForm(): FormGroup;
     abstract getFillable(): Attribute[];
-    abstract getTranslationFillable(): Attribute[];
+
+    protected submit(): void
+    {
+        for (let attribute of this.fillable) {
+            let control = this.form.get(attribute.name);
+
+            attribute.apply(attribute, control.value, control);
+        }
+
+        console.log('Submit resource', this.resource);
+    }
+
+    initializeForm(): FormGroup
+    {
+        let data = {};
+
+        for (let attribute of this.fillable) {
+            data[attribute.name] = ['', attribute.validator]
+        }
+
+        return this.formBuilder.group(data);
+    }
 }

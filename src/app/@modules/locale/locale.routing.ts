@@ -13,14 +13,14 @@ const routes: Routes = [
         path: 'locales/add',
         component: LocaleDetailsComponent,
         resolve: {
-            locale: LocaleResolver
+            item: LocaleResolver
         }
     },
     {
         path: 'locales/:id',
         component: LocaleDetailsComponent,
         resolve: {
-            locale: LocaleResolver
+            item: LocaleResolver
         }
     }
 ];

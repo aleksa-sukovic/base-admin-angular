@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ResourceDetailsComponent } from 'src/app/@shared/components/resource-details/resource-details.component';
 import { Locale } from '../../models/locale.model';
-import { FormGroup, Validators } from '@angular/forms';
+import { Validators } from '@angular/forms';
 import { Attribute } from 'src/app/@shared/components/resource-details/attribute.interface';
 
 @Component({
@@ -12,25 +12,27 @@ import { Attribute } from 'src/app/@shared/components/resource-details/attribute
 export class LocaleDetailsComponent extends ResourceDetailsComponent<Locale>
 {
 
-    initializeForm(): FormGroup
-    {
-        this.resource = new Locale({id: 1, code: 'en'});
-
-        return null;
-    }
-
     getFillable(): Attribute[]
     {
         return [
-            { name: 'id', validator: Validators.required },
-            { name: 'code', validator: Validators.required}
-        ];
-    }
+            {
+                name: 'code',
+                validator: Validators.required,
+                apply: (attribute, value, control) => {
+                    this.resource[attribute.name] = value + '_transformed';
 
-    getTranslationFillable(): Attribute[]
-    {
-        return [
-            { name: 'name', validator: Validators.required }
+                    console.log('Code transformer', value, control);
+                }
+            },
+            {
+                name: 'name',
+                validator: Validators.required,
+                apply: (attribute, value, control) => {
+                    this.resource[attribute.name] = value + '_transformed';
+
+                    console.log('Name transformer', value, control);
+                }
+            }
         ];
     }
 }

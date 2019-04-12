@@ -3,6 +3,7 @@
         "injectable",
         "module",
         "nb",
+        "nbinput",
         "params",
         "processable",
         "scrollable",

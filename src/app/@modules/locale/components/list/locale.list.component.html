@@ -1,53 +1,54 @@
-<!-- Controls -->
-<div class="form-group select-form-group float-right" *ngIf="data && data.length">
-    <select [(ngModel)]="perPage" (change)="onPerPageChange()" class="form-control">
-        <option>5</option>
-        <option>10</option>
-        <option>20</option>
-    </select>
-</div>
-
-<!-- Data -->
-<table class="table table-hover table-bordered table-list" *ngIf="data && data.length">
-    <thead>
-        <tr>
-            <th>Actions</th>
-            <th scope="col" sortable="id" (sort)="onSort($event)">ID</th>
-            <th scope="col" sortable="name" (sort)="onSort($event)">Name</th>
-            <th scope="col" sortable="code" (sort)="onSort($event)">Code</th>
-        </tr>
-    </thead>
-    <tbody *ngIf="data">
-        <tr *ngFor="let locale of data">
-            <td class="table-actions">
-                <table-actions [resource]="locale" (onEdit)="viewResource(locale)" (onDelete)="deleteResource(locale)"></table-actions>
-            </td>
-            <td>{{ locale.id }}</td>
-            <td>{{ locale.translation.name }}</td>
-            <td>{{ locale.code }}</td>
-        </tr>
-    </tbody>
-</table>
-
-<!-- Pagination -->
-<table-pagination
-    [perPage]="perPage"
-    [totalCount]="totalCount"
-    *ngIf="data && data.length"
-    (pageSelect)="onPageSelect($event)">
-</table-pagination>
-
-<!-- Loader -->
-<div class="text-center" *ngIf="!data">
-    <div class="spinner-border text-secondary" role="status">
-        <span class="sr-only">Loading...</span>
+<div>
+    <!-- Controls -->
+    <div class="form-group select-form-group float-right" *ngIf="data && data.length">
+        <select [(ngModel)]="perPage" (change)="onPerPageChange()" class="form-control">
+            <option>5</option>
+            <option>10</option>
+            <option>20</option>
+        </select>
     </div>
-</div>
 
-<!-- No Result -->
-<nb-card *ngIf="data && !data.length">
-    <nb-card-header>No results</nb-card-header>
-    <nb-card-body>
-        We're sorry, there are no results to show.
-    </nb-card-body>
-</nb-card>
+    <!-- Data -->
+    <table class="table table-hover table-bordered table-list" *ngIf="data && data.length">
+        <thead>
+            <tr>
+                <th>Actions</th>
+                <th scope="col" sortable="id" (sort)="onSort($event)">ID</th>
+                <th scope="col" sortable="name" (sort)="onSort($event)">Name</th>
+                <th scope="col" sortable="code" (sort)="onSort($event)">Code</th>
+            </tr>
+        </thead>
+        <tbody *ngIf="data">
+            <tr *ngFor="let locale of data">
+                <td class="table-actions">
+                    <table-actions [resource]="locale" (onEdit)="viewResource(locale)"
+                        (onDelete)="deleteResource(locale)"></table-actions>
+                </td>
+                <td>{{ locale.id }}</td>
+                <td>{{ locale.translation.name }}</td>
+                <td>{{ locale.code }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Pagination -->
+    <table-pagination [perPage]="perPage" [totalCount]="totalCount" *ngIf="data && data.length"
+        (pageSelect)="onPageSelect($event)">
+    </table-pagination>
+
+    <!-- Loader -->
+    <div class="text-center" *ngIf="!data">
+        <div class="spinner-border text-secondary" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+
+    <!-- No Result -->
+    <nb-card *ngIf="data && !data.length">
+        <nb-card-header>No results</nb-card-header>
+        <nb-card-body>
+            We're sorry, there are no results to show.
+        </nb-card-body>
+    </nb-card>
+
+</div>
