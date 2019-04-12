@@ -1,6 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
 import { ResourceService } from '../../../@core/services/resource.service';
 import { Locale } from '../models/locale.model';
+import { Observable, Observer } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -9,6 +10,11 @@ export class LocaleService extends ResourceService<Locale>
 {
     public current: Locale;
     public available: Locale[];
+
+    private currentObserver: Observer<Locale>;
+    private availableObserver: Observer<Locale[]>;
+    public currentStream: Observable<Locale> = new Observable(observer => this.currentObserver = observer);
+    public availableStream: Observable<Locale[]> = new Observable(observer => this.availableObserver = observer);
 
     constructor(injector: Injector)
     {
@@ -25,6 +31,8 @@ export class LocaleService extends ResourceService<Locale>
         this.current = locale;
 
         localStorage.setItem('locale', locale.code);
+
+        this.notifySubscribers(this.currentObserver, this.current);
     }
 
     public setCurrentByCode(code: string): void
@@ -40,13 +48,12 @@ export class LocaleService extends ResourceService<Locale>
     {
         this.available = locales;
 
-        let localeCode = localStorage.getItem('locale');
-        if (!localeCode) {
-            localeCode = 'en';
-        }
+        let localeCode = localStorage.getItem('locale') || 'en';
 
         this.current = this.findByCode(localeCode) || new Locale({id: 1, code: 'en', name: ''});
         localStorage.setItem('locale', this.current.code);
+
+        this.notifySubscribers(this.availableObserver, this.available);
     }
 
     protected findByCode(code: string): Locale
@@ -56,5 +63,12 @@ export class LocaleService extends ResourceService<Locale>
         }
 
        return this.available.find(locale => locale && locale.code == code);
+    }
+
+    protected notifySubscribers(observer: Observer<any>, data: any): void
+    {
+        if (observer != null) {
+            observer.next(data);
+        }
     }
 }

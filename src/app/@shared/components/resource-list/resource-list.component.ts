@@ -1,4 +1,4 @@
-import {Injectable, Injector, QueryList, ViewChildren} from '@angular/core';
+import {Injectable, Injector, QueryList, ViewChildren } from '@angular/core';
 import {SortableTableHeaderDirective, SortEvent} from '../../directives/tables/sortable.table.header.directive';
 import {Resource} from 'src/app/@core/models/resource.model';
 import {ResourceService} from 'src/app/@core/services/resource.service';
@@ -42,16 +42,25 @@ export abstract class ResourceList<Model extends Resource<Model>, ModelService e
             this.setTableSortHeaders(params);
 
             this.routerState.addQueryParams(params);
+
+            this.getData(this.getParams(this.routerState.queryParams));
         });
     }
 
-    protected onRouterRefresh(): void
+    protected onLocaleChange(): void
     {
         setTimeout(() => {
             this.setTableSortHeaders(this.routerState.queryParams);
 
             this.getData(this.getParams(this.routerState.queryParams));
         });
+    }
+
+    public ngOnInit()
+    {
+        super.ngOnInit();
+
+        this.getData(this.getParams(this.routerState.queryParams));
     }
 
     public viewResource(resource: Model): void
@@ -76,8 +85,8 @@ export abstract class ResourceList<Model extends Resource<Model>, ModelService e
         const params: any = {};
         Object.assign(params, data);
 
-        params.include = this.apiIncludes;
-        params.additional_fields = this.apiAdditionalFields;
+        params.include = data.include || this.apiIncludes;
+        params.additional_fields = data.additional_fields || this.apiAdditionalFields;
 
         return params;
     }

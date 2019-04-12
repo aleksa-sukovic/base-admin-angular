@@ -8,11 +8,11 @@ export class LocaleResolver extends ResourceResolver<Locale, LocaleService>
 {
     protected apiIncludes = 'translation,translations';
 
-    constructor(private localeService: LocaleService, private injector: Injector)
+    constructor(injector: Injector)
     {
         super(injector);
 
-        this.resourceService = localeService;
+        this.resourceService = injector.get(LocaleService);
     }
 
     makeDefaultInstance(): Locale

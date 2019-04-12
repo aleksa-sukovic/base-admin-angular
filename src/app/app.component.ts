@@ -34,8 +34,6 @@ export class AppComponent
             this.localeService.init(data.getCollection());
 
             this.languagePickerComponent.locales = data.getCollection();
-
-            this.routerStateService.refresh();
         });
 
     }
