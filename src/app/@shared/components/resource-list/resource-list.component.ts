@@ -7,17 +7,18 @@ import {NbToastStatus} from '@nebular/theme/components/toastr/model';
 
 @Injectable()
 export abstract class ResourceList<Model extends Resource<Model>, ModelService extends ResourceService<Model>>
-    extends ResourceBaseComponent<Model, ModelService>
+extends ResourceBaseComponent<Model, ModelService>
 {
     @ViewChildren(SortableTableHeaderDirective)
     protected headers: QueryList<SortableTableHeaderDirective>;
 
     protected data: Model[];
     protected totalCount: number;
-    protected perPage: number;
+    protected semaphores: any;
 
     protected apiIncludes = 'translation,translations';
     protected apiAdditionalFields = 'count';
+    protected perPage: number;
 
     protected constructor(injector: Injector)
     {
@@ -25,12 +26,25 @@ export abstract class ResourceList<Model extends Resource<Model>, ModelService e
 
         this.totalCount = 0;
         this.perPage = 5;
+        this.semaphores = {
+            loading: false,
+            noData: false,
+            hasData: false
+        };
     }
 
-    protected getData(params: any)
+    protected getData(params: any, useLoader: boolean = true)
     {
+        this.semaphores.loading = useLoader;
+
         this.service.all(params).subscribe(data => {
             this.data = data.getCollection();
+
+            if (useLoader) {
+                this.semaphores.noData = this.data && !this.data.length;
+                this.semaphores.hasData = !this.semaphores.noData;
+                this.semaphores.loading = false;
+            }
 
             this.totalCount = parseInt(data.getRaw().count, 10);
         });
@@ -43,7 +57,7 @@ export abstract class ResourceList<Model extends Resource<Model>, ModelService e
 
             this.routerState.addQueryParams(params);
 
-            this.getData(this.getParams(this.routerState.queryParams));
+            this.getData(this.getParams(this.routerState.queryParams), false);
         });
     }
 
@@ -58,6 +72,8 @@ export abstract class ResourceList<Model extends Resource<Model>, ModelService e
 
     public ngOnInit()
     {
+        console.log('onInit');
+
         super.ngOnInit();
 
         this.getData(this.getParams(this.routerState.queryParams));
@@ -111,11 +127,13 @@ export abstract class ResourceList<Model extends Resource<Model>, ModelService e
         this.routerState.navigate([ this.url ]);
     }
 
-    protected onPerPageChange()
+    protected onPerPageChange(perPage: number)
     {
-        this.routerState.addQueryParams({limit: this.perPage});
+        this.routerState.addQueryParams({limit: perPage});
 
-        this.routerState.navigate([ this.url ]);
+        this.perPage = perPage;
+
+        this.routerState.navigate([this.url]);
     }
 
     protected setTableSortHeaders(params: any): void

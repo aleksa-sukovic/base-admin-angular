@@ -6,7 +6,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {RouterStateService} from '../../../@core/services/router.state.service';
 import {Subscription} from 'rxjs';
 import {NbToastStatus} from '@nebular/theme/components/toastr/model';
-import { LocaleService } from 'src/app/@modules/locale/services/locale.service';
+import {LocaleService} from 'src/app/@modules/locale/services/locale.service';
 
 export abstract class ResourceBaseComponent<Model extends Resource<Model>, ModelService extends ResourceService<Model>> implements OnDestroy, OnInit
 {

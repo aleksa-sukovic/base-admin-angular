@@ -3,11 +3,13 @@
         "injectable",
         "module",
         "nb",
+        "nbbutton",
         "nbinput",
         "params",
         "processable",
         "scrollable",
         "toastr",
-        "validators"
+        "validators",
+        "xsmall"
     ]
 }
