@@ -8,4 +8,4 @@ const routes: Routes = [
     { path: '**', component: PageNotFoundComponent },
 ];
 
-export const AppRoute: ModuleWithProviders = RouterModule.forRoot(routes);
+export const AppRoute: ModuleWithProviders = RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' });

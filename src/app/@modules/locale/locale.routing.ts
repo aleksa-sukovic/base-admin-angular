@@ -19,6 +19,7 @@ const routes: Routes = [
     {
         path: 'locales/:id',
         component: LocaleDetailsComponent,
+        runGuardsAndResolvers: 'always',
         resolve: {
             item: LocaleResolver
         }

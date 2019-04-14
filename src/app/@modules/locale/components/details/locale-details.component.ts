@@ -1,36 +1,48 @@
-import { Component } from '@angular/core';
-import { ResourceDetailsComponent } from 'src/app/@shared/components/resource-details/resource-details.component';
+import { Component, Injector } from '@angular/core';
 import { Locale } from '../../models/locale.model';
 import { Validators } from '@angular/forms';
 import { Attribute } from 'src/app/@shared/components/resource-details/attribute.interface';
+import { LocaleTranslation } from '../../models/locale.translation.model';
+import { TranslatedResourceDetailsComponent } from 'src/app/@shared/components/resource-details/translated-resource-details.component';
+import { LocaleService } from '../../services/locale.service';
 
 @Component({
   selector: 'locale-details',
   templateUrl: './locale-details.component.html',
   styleUrls: ['./locale-details.component.scss']
 })
-export class LocaleDetailsComponent extends ResourceDetailsComponent<Locale>
+export class LocaleDetailsComponent extends TranslatedResourceDetailsComponent<Locale, LocaleTranslation, LocaleService>
 {
+    protected baseUrl = 'locales';
 
-    getFillable(): Attribute[]
+    constructor(injector: Injector)
+    {
+        super(injector);
+
+        this.resourceService = injector.get(LocaleService);
+    }
+
+    protected getFillable(): Attribute[]
     {
         return [
             {
                 name: 'code',
                 validator: Validators.required,
-                apply: (attribute, value, control) => {
-                    this.resource[attribute.name] = value + '_transformed';
-
-                    console.log('Code transformer', value, control);
+                apply: (attribute, field) => {
+                    return field.value;
                 }
-            },
+            }
+        ];
+    }
+
+    protected getTranslationFillable(): Attribute[]
+    {
+        return [
             {
                 name: 'name',
                 validator: Validators.required,
-                apply: (attribute, value, control) => {
-                    this.resource[attribute.name] = value + '_transformed';
-
-                    console.log('Name transformer', value, control);
+                apply: (attribute, field) => {
+                    this.resource.translation.name = field.value;
                 }
             }
         ];
