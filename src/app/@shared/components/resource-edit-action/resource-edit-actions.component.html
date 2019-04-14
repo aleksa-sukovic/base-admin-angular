@@ -1,0 +1,30 @@
+<div class="resource-edit-actions">
+    <button
+        class="btn btn-primary btn-xsmall clickable"
+        nbbutton size="xsmall"
+        type="submit"
+        [disabled]="loading"
+        >
+        Save
+    </button>
+
+    <p
+        *ngIf="resource && resource.id"
+        class="text-danger clickable delete-text"
+        deleteResource
+        [resource]="resource"
+        [title]="deleteTitle || ''"
+        (delete)="delete.emit()">
+        Delete
+    </p>
+
+    <p
+        *ngIf="showTranslationAction && resource.translation && resource.translation.id"
+        class="text-danger clickable delete-text"
+        deleteResource
+        [resource]="resource.translation"
+        [title]="translationDeleteTitle || ''"
+        (delete)="translationDelete.emit()">
+        Delete Translation
+    </p>
+</div>
