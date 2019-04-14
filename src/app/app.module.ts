@@ -10,6 +10,7 @@ import { CoreModule } from './@core/core.module';
 import { SharedModule } from './@shared/shared.module';
 import { DashboardModule } from './@modules/dashboard/dashboard.module';
 import { LocaleModule } from './@modules/locale/locale.module';
+import { UserModule } from './@modules/user/user.module';
 
 @NgModule({
     declarations: [
@@ -26,6 +27,7 @@ import { LocaleModule } from './@modules/locale/locale.module';
         // Custom
         DashboardModule,
         LocaleModule,
+        UserModule,
 
         // 3rd party
         BrowserModule,

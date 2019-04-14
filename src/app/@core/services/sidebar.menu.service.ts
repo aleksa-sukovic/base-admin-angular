@@ -14,7 +14,7 @@ export class SidebarMenuService
                 link: '/dashboard'
             },
             {
-                title: 'Locale',
+                title: 'Locales',
                 expanded: false,
                 icon: 'fas fa-language',
                 children: [
@@ -25,6 +25,21 @@ export class SidebarMenuService
                     {
                         title: 'Add Locale',
                         link: '/locales/add'
+                    }
+                ]
+            },
+            {
+                title: 'Users',
+                expanded: false,
+                icon: 'fas fa-users',
+                children: [
+                    {
+                        title: 'All Users',
+                        link: '/users'
+                    },
+                    {
+                        title: 'Add User',
+                        link: '/users/add'
                     }
                 ]
             }

@@ -1,0 +1,58 @@
+<nb-card>
+    <nb-card-header>
+        <button class="btn btn-primary btn-xsmall clickable" nbbutton size="xsmall" [routerLink]="['add']">
+            Add new
+        </button>
+    </nb-card-header>
+    <nb-card-body>
+        <!-- Controls -->
+        <per-page-selector *ngIf="data && data.length" (perPageChange)="onPerPageChange($event)"></per-page-selector>
+
+        <!-- Data -->
+        <table class="table table-hover table-bordered table-list" [ngClass]="{ 'hidden': semaphores.loading }">
+            <thead>
+                <tr>
+                    <th>Actions</th>
+                    <th scope="col" sortable="id" (sort)="onSort($event)">ID</th>
+                    <th scope="col" sortable="name" (sort)="onSort($event)">Full Name</th>
+                    <th scope="col" sortable="email" (sort)="onSort($event)">Email</th>
+                    <th scope="col" sortable="gender" (sort)="onSort($event)">Gender</th>
+                    <th scope="col" >Birth Date</th>
+                </tr>
+            </thead>
+            <tbody *ngIf="data">
+                <tr *ngFor="let user of data">
+                    <td class="table-actions">
+                        <table-actions
+                            [resource]="user"
+                            (onEdit)="viewResource(user)"
+                            (onDelete)="deleteResource(user)">
+                        </table-actions>
+                    </td>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.full_name }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.gender }}</td>
+                    <td>{{ user.birth_date | date: 'shortDate' }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Pagination -->
+        <table-pagination [perPage]="perPage" [totalCount]="totalCount" *ngIf="!semaphores.loading && semaphores.hasData"
+            (pageSelect)="onPageSelect($event)">
+        </table-pagination>
+
+        <!-- Loader -->
+        <div class="text-center" *ngIf="semaphores.loading">
+            <div class="spinner-border text-secondary" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+
+        <!-- No results -->
+        <div class="lead text-center p-4"  *ngIf="semaphores.noData">
+            We're sorry there are no results!
+        </div>
+    </nb-card-body>
+</nb-card>
