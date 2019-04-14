@@ -28,7 +28,7 @@ export class LocaleDetailsComponent extends TranslatedResourceDetailsComponent<L
             {
                 name: 'code',
                 validator: Validators.required,
-                apply: (attribute, field) => {
+                apply: field => {
                     return field.value;
                 }
             }
@@ -41,7 +41,7 @@ export class LocaleDetailsComponent extends TranslatedResourceDetailsComponent<L
             {
                 name: 'name',
                 validator: Validators.required,
-                apply: (attribute, field) => {
+                apply: field => {
                     this.resource.translation.name = field.value;
                 }
             }

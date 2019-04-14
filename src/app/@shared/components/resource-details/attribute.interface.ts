@@ -4,5 +4,6 @@ export interface Attribute
 {
     name: string;
     validator: any;
-    apply?: (attribute: Attribute, field: AbstractControl) => any;
+    apply?: (field: AbstractControl) => any;
+    init?: (value: any) => any;
 }

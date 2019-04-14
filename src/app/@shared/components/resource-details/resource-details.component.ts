@@ -66,6 +66,10 @@ export abstract class ResourceDetailsComponent<Model extends Resource<Model>, Mo
         for (let attribute of this.fillable) {
             let paramValue = this.getValue(attribute);
 
+            if (attribute.init) {
+                paramValue = attribute.init(paramValue);
+            }
+
             params[attribute.name] = [
                 paramValue,
                 attribute.validator
@@ -135,7 +139,7 @@ export abstract class ResourceDetailsComponent<Model extends Resource<Model>, Mo
             let control = this.form.get(attribute.name);
 
             if (attribute.apply) {
-                let transformed = attribute.apply(attribute, control);
+                let transformed = attribute.apply(control);
 
                 if (transformed) {
                     this.saveValue(attribute, transformed);
