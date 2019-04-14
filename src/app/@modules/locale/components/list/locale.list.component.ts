@@ -10,6 +10,8 @@ import { LocaleService } from '../../services/locale.service';
 })
 export class LocaleListComponent extends ResourceList<Locale, LocaleService>
 {
+    protected baseUrl = 'locales';
+
     constructor(injector: Injector)
     {
         super(injector);

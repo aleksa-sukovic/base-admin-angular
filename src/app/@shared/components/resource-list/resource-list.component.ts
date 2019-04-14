@@ -18,6 +18,7 @@ extends ResourceBaseComponent<Model, ModelService>
 
     protected apiIncludes = 'translation,translations';
     protected apiAdditionalFields = 'count';
+    protected baseUrl: string;
     protected perPage: number;
 
     protected constructor(injector: Injector)
@@ -72,8 +73,6 @@ extends ResourceBaseComponent<Model, ModelService>
 
     public ngOnInit()
     {
-        console.log('onInit');
-
         super.ngOnInit();
 
         this.getData(this.getParams(this.routerState.queryParams));
@@ -81,7 +80,7 @@ extends ResourceBaseComponent<Model, ModelService>
 
     public viewResource(resource: Model): void
     {
-        this.showToast('Navigate', 'Navigate to resource \'' + resource.id + '\'', NbToastStatus.INFO);
+        this.routerState.navigate([this.baseUrl, resource.id]);
     }
 
     public deleteResource(resource: Model): void
