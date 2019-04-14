@@ -2,7 +2,7 @@ import { Resource } from './resource.model';
 
 export abstract class TranslatableResource<Model, TranslationModel> extends Resource<Model>
 {
-    public translation: TranslationModel;
+    public translation: TranslationModel = this.initializeTranslation({});
     public translations: TranslationModel[] = [];
 
     constructor(data?: any)
