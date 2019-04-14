@@ -2,11 +2,13 @@ import { Injectable, Injector } from '@angular/core';
 import { ResourceService } from '../../../@core/services/resource.service';
 import { Locale } from '../models/locale.model';
 import { Observable, Observer } from 'rxjs';
+import { TranslatedResourceService } from 'src/app/@core/services/translated-resource.service';
+import { LocaleTranslation } from '../models/locale.translation.model';
 
 @Injectable({
     providedIn: 'root'
 })
-export class LocaleService extends ResourceService<Locale>
+export class LocaleService extends TranslatedResourceService<Locale, LocaleTranslation>
 {
     public current: Locale;
     public available: Locale[];
@@ -24,6 +26,11 @@ export class LocaleService extends ResourceService<Locale>
     protected convert(data: any): Locale
     {
         return new Locale(data);
+    }
+
+    protected convertTranslation(data: any): LocaleTranslation
+    {
+        return new LocaleTranslation(data);
     }
 
     public setCurrent(locale: Locale): void
