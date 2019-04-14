@@ -1,45 +1,174 @@
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Resource } from 'src/app/@core/models/resource.model';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit, Injector } from '@angular/core';
 import { Attribute } from './attribute.interface';
 import { ActivatedRoute } from '@angular/router';
+import { LocaleService } from 'src/app/@modules/locale/services/locale.service';
+import { NbToastStatus } from '@nebular/theme/components/toastr/model';
+import { NbToastrService } from '@nebular/theme';
+import { ResourceService } from 'src/app/@core/services/resource.service';
+import { RouterStateService } from 'src/app/@core/services/router.state.service';
+import { Subscription } from 'rxjs';
 
 @Injectable()
-export abstract class ResourceDetailsComponent<Model extends Resource<Model>>
+export abstract class ResourceDetailsComponent<Model extends Resource<Model>, ModelService extends ResourceService<Model>> implements OnInit
 {
     protected form: FormGroup;
+    protected formBuilder: FormBuilder;
+
+    protected route: ActivatedRoute;
+    protected routeSubscription: Subscription;
+
+    protected localeService: LocaleService;
+    protected toastService: NbToastrService;
+    protected routerState: RouterStateService;
+
     protected resource: Model;
+    protected resourceService: ModelService;
+
     protected fillable: Attribute[];
 
-    constructor(protected formBuilder: FormBuilder, protected route: ActivatedRoute)
+    protected semaphores: any;
+    protected baseUrl: string;
+
+    constructor(injector: Injector)
     {
+        this.formBuilder = injector.get(FormBuilder);
+        this.route = injector.get(ActivatedRoute);
+        this.routerState = injector.get(RouterStateService);
+        this.localeService = injector.get(LocaleService);
+        this.toastService = injector.get(NbToastrService);
+
         this.fillable = this.getFillable();
         this.resource = this.route.snapshot.data.item;
 
-        this.form = this.initializeForm();
+        this.semaphores = {
+            formSubmitted: false,
+            loading: false
+        };
     }
 
-    abstract getFillable(): Attribute[];
+    protected abstract getFillable(): Attribute[];
+
+    public ngOnInit(): void
+    {
+        this.routeSubscription = this.route.data.subscribe(data => {
+            this.resource = data.item;
+
+            this.form = this.formBuilder.group(this.getFormBuilderParams());
+        });
+    }
+
+    protected getFormBuilderParams(): any
+    {
+        let params = {};
+
+        for (let attribute of this.fillable) {
+            let paramValue = this.getValue(attribute);
+
+            params[attribute.name] = [
+                paramValue,
+                attribute.validator
+            ];
+        }
+
+        return params;
+    }
 
     protected submit(): void
+    {
+        this.applyValues();
+        this.semaphores.formSubmitted = true;
+
+        if (this.form.invalid) {
+            this.showToast('Validation error', 'Please correctly fill in all of the fields!', NbToastStatus.DANGER);
+
+            return;
+        }
+
+        this.beforeSave();
+        this.save();
+    }
+
+    protected beforeSave(): void
+    {
+        //
+    }
+
+    protected save(): any
+    {
+        this.semaphores.loading = true;
+
+        this.resourceService.save(this.resource).subscribe(saved => {
+            this.afterSave(saved.getItem());
+
+            this.semaphores.loading = false;
+            this.semaphores.formSubmitted = false;
+
+            if (!this.resource.id) {
+                this.routerState.navigate([this.baseUrl, saved.getItem().id]);
+            } else {
+                this.routerState.refresh();
+            }
+        });
+    }
+
+    protected afterSave(saved: Model): void
+    {
+        //
+    }
+
+    protected deleteResource(): void
+    {
+        this.semaphores.loading = true;
+
+        this.resourceService.delete(this.resource).subscribe(() => {
+            this.semaphores.loading = false;
+
+            this.routerState.navigate([this.baseUrl]);
+        });
+    }
+
+    protected applyValues(): void
     {
         for (let attribute of this.fillable) {
             let control = this.form.get(attribute.name);
 
-            attribute.apply(attribute, control.value, control);
-        }
+            if (attribute.apply) {
+                let transformed = attribute.apply(attribute, control);
 
-        console.log('Submit resource', this.resource);
+                if (transformed) {
+                    this.saveValue(attribute, transformed);
+                }
+
+                continue;
+            }
+
+            this.saveValue(attribute, control.value);
+        }
     }
 
-    initializeForm(): FormGroup
+    protected saveValue(attribute: Attribute, value: any): void
     {
-        let data = {};
+        this.resource[attribute.name] = value;
+    }
 
-        for (let attribute of this.fillable) {
-            data[attribute.name] = ['', attribute.validator]
-        }
+    protected getValue(attribute: Attribute): any
+    {
+        return this.getPropertyValue(attribute) || '';
+    }
 
-        return this.formBuilder.group(data);
+    protected getPropertyValue(attribute: Attribute): any
+    {
+        return this.resource[attribute.name] || null;
+    }
+
+    protected showToast(title: string, message: string, status: NbToastStatus = NbToastStatus.SUCCESS): void
+    {
+        this.toastService.show(
+            message,
+            title,
+            { status }
+        );
     }
 }
