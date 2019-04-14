@@ -2,7 +2,7 @@
     <span
         deleteResource
         [resource]="resource"
-        [title]="resource.translation.name"
+        [title]="title || ''"
         (delete)="onDelete.emit()"
         >
         <i class="fas fa-trash-alt icon icon-trash"></i>

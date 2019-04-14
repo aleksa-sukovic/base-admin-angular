@@ -8,6 +8,7 @@ import { Component, Output, EventEmitter, Input } from '@angular/core';
 export class TableActionsComponent
 {
     @Input() resource: any;
+    @Input() title: any;
     @Output() onDelete = new EventEmitter();
     @Output() onEdit = new EventEmitter();
 
