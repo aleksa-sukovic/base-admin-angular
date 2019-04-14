@@ -9,9 +9,9 @@ export class LocaleTranslation extends Resource<LocaleTranslation>
 
     protected initialize(data?: any): void
     {
-        this.id = parseInt(data.id) || -1;
-        this.locale_parent_id = parseInt(data.locale_parent_id) || -1;
-        this.locale_id = parseInt(data.locale_id) || -1;
+        this.id = parseInt(data.id) || null;
+        this.locale_parent_id = parseInt(data.locale_parent_id) || null;
+        this.locale_id = parseInt(data.locale_id) || null;
         this.name = this.getName(data);
     }
 
