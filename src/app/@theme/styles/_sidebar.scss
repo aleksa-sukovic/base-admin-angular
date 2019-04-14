@@ -13,6 +13,8 @@ nb-sidebar
 nb-menu .menu-item a
 {
     border-radius: 0 !important;
+    font-weight: normal !important;
+    font-size: 0.9rem !important;
 }
 
 nb-sidebar .active
@@ -26,6 +28,7 @@ nb-sidebar .menu-items .menu-items .active
 {
     background-color: $white !important;
     border: solid $accent 2px !important;
+    border-radius: 5px !important;
 }
 
 .resource-sidebar
