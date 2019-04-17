@@ -40,10 +40,14 @@ extends ResourceDetailsComponent<Model, ModelService> implements OnDestroy
 
     protected deleteTranslation(): void
     {
-        this.resourceService.deleteTranslation(this.resource).subscribe(data => {
-            console.log(data.getItem());
+        this.resourceService.deleteTranslation(this.resource).subscribe(() => {
+            if (this.resource.translations.length == 1) {
+                this.routerState.navigate([this.baseUrl], true);
 
-            this.routerState.navigate[this.baseUrl];
+                return;
+            }
+
+            this.routerState.refresh();
         });
     }
 
