@@ -80,7 +80,7 @@ extends ResourceBaseComponent<Model, ModelService>
 
     public viewResource(resource: Model): void
     {
-        this.routerState.navigate([this.baseUrl, resource.id]);
+        this.routerState.navigate([this.baseUrl, resource.id], true);
     }
 
     public deleteResource(resource: Model): void

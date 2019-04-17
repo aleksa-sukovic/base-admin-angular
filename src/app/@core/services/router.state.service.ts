@@ -13,8 +13,12 @@ export class RouterStateService
         this.queryParams = {};
     }
 
-    public navigate(commands: any[]): void
+    public navigate(commands: any[], clearParams: boolean = false): void
     {
+        if (clearParams) {
+            this.resetQueryParams();
+        }
+
         this.router.navigate(commands, {
             queryParams: this.parseQueryParams(),
             queryParamsHandling: ''
