@@ -3,42 +3,48 @@
         <nb-card-header>
             <div class="d-flex flex-row justify-content-between">
                 <p class="lead d-inline">Locale Details</p>
-                <resource-edit-actions
-                    [loading]="semaphores.loading"
-                    [deleteTitle]="resource.code"
-                    [translationDeleteTitle]="resource.translation.name"
-                    [resource]="resource"
-                    [showTranslationAction]="true"
-                    (save)="submit()"
-                    (delete)="deleteResource()"
-                    (translationDelete)="deleteTranslation()"
-                    ></resource-edit-actions>
+                <resource-edit-actions [loading]="semaphores.loading" [deleteTitle]="resource.code"
+                [translationDeleteTitle]="resource.translation.name" [resource]="resource"
+                [showTranslationAction]="true" (save)="submit()" (delete)="deleteResource()"
+                (translationDelete)="deleteTranslation()"></resource-edit-actions>
             </div>
         </nb-card-header>
         <nb-card-body>
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="form-group">
+                    <div class="form-group mb-0">
                         <div class="row full-name-inputs">
                             <div class="col-sm-3 col-form-label">
                                 Code
                             </div>
                             <div class="col-sm-9 input-group">
                                 <input formControlName="code" nbinput placeholder="Code" type="text"
-                                    class="input-full-width input-md input-rectangle"
-                                    [ngClass]="{ 'input-danger': semaphores.formSubmitted && form.get('code').invalid }">
+                                class="input-full-width input-md input-rectangle"
+                                [ngClass]="{ 'input-danger': semaphores.formSubmitted && form.get('code').invalid }">
                             </div>
                         </div>
                     </div>
-                    <div class="form-group mb-0">
+                </div>
+            </div>
+        </nb-card-body>
+    </nb-card>
+    <nb-card>
+        <nb-card-header>
+            <p class="lead">
+                Locale translations
+            </p>
+        </nb-card-header>
+        <nb-card-body>
+            <div class="row" *ngFor="let locale of locales">
+                <div class="col-sm-12">
+                    <div class="form-group">
                         <div class="row full-name-inputs">
                             <div class="col-sm-3 col-form-label">
-                                Name
+                                Name ({{ locale.translation.name }})
                             </div>
                             <div class="col-sm-9 input-group">
-                                <input formControlName="name" nbinput placeholder="Name" type="text"
-                                    class="input-full-width input-md input-rectangle"
-                                    [ngClass]="{ 'input-danger': semaphores.formSubmitted && form.get('name').invalid }">
+                                <input formControlName="{{ locale.code }}" nbinput placeholder="Name" type="text"
+                                class="input-full-width input-md input-rectangle">
                             </div>
                         </div>
                     </div>

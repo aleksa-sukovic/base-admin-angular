@@ -16,8 +16,8 @@ export class LanguagePickerComponent
 
     constructor(private localeService: LocaleService)
     {
-        this.selectedLocale = localeService.current.code;
-        this.locales = this.locales || this.localeService.available;
+        this.selectedLocale = LocaleService.current.code;
+        this.locales = this.locales || LocaleService.available;
     }
 
     changeLanguage(): void

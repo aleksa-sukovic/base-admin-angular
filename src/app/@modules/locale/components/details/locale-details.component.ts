@@ -14,37 +14,50 @@ import { LocaleService } from '../../services/locale.service';
 export class LocaleDetailsComponent extends TranslatedResourceDetailsComponent<Locale, LocaleTranslation, LocaleService>
 {
     protected baseUrl = 'locales';
+    protected locales: Locale[] = [];
 
     constructor(injector: Injector)
     {
         super(injector);
 
         this.resourceService = injector.get(LocaleService);
+        this.locales = LocaleService.available;
     }
 
     protected getFillable(): Attribute[]
     {
-        return [
+        let fillables = [
             {
                 name: 'code',
                 validator: Validators.required,
-                apply: field => {
+                apply: (field: any) => {
                     return field.value;
                 }
             }
         ];
+
+        for (let locale of LocaleService.available) {
+            fillables.push({
+                name: locale.code,
+                validator: Validators.required,
+                apply: field => {
+                    let translation = this.resource.translations.find(item => item.locale_id == locale.id);
+
+                    if (!translation) {
+                        translation = new LocaleTranslation({ name: field.value, locale_id: this.resource.id, locale_parent_id: locale.id });
+                        this.resource.translations.push(translation);
+                    }
+
+                    translation.name = field.value;
+                }
+            });
+        }
+
+        return fillables;
     }
 
     protected getTranslationFillable(): Attribute[]
     {
-        return [
-            {
-                name: 'name',
-                validator: Validators.required,
-                apply: field => {
-                    this.resource.translation.name = field.value;
-                }
-            }
-        ];
+        return [];
     }
 }
