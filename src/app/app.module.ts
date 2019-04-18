@@ -26,7 +26,7 @@ import { UserModule } from './@modules/user/user.module';
 
         // Custom
         DashboardModule,
-        LocaleModule,
+        LocaleModule.forRoot(),
         UserModule,
 
         // 3rd party

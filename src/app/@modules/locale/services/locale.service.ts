@@ -10,8 +10,8 @@ import { LocaleTranslation } from '../models/locale.translation.model';
 })
 export class LocaleService extends TranslatedResourceService<Locale, LocaleTranslation>
 {
-    public current: Locale;
-    public available: Locale[];
+    public static current: Locale;
+    public static available: Locale[];
 
     private currentObserver: Observer<Locale>;
     private availableObserver: Observer<Locale[]>;
@@ -35,16 +35,16 @@ export class LocaleService extends TranslatedResourceService<Locale, LocaleTrans
 
     public setCurrent(locale: Locale): void
     {
-        this.current = locale;
+        LocaleService.current = locale;
 
         localStorage.setItem('locale', locale.code);
 
-        this.notifySubscribers(this.currentObserver, this.current);
+        this.notifySubscribers(this.currentObserver, LocaleService.current);
     }
 
     public setCurrentByCode(code: string): void
     {
-        const found = this.available.find(data => data.code === code);
+        const found = LocaleService.available.find(data => data.code === code);
 
         if (found) {
             this.setCurrent(found);
@@ -53,23 +53,23 @@ export class LocaleService extends TranslatedResourceService<Locale, LocaleTrans
 
     public init(locales: Locale[]): void
     {
-        this.available = locales;
+        LocaleService.available = locales;
 
         let localeCode = localStorage.getItem('locale') || 'en';
 
-        this.current = this.findByCode(localeCode) || new Locale({id: 1, code: 'en', name: ''});
-        localStorage.setItem('locale', this.current.code);
+        LocaleService.current = this.findByCode(localeCode) || new Locale({id: 1, code: 'en', name: ''});
+        localStorage.setItem('locale', LocaleService.current.code);
 
-        this.notifySubscribers(this.availableObserver, this.available);
+        this.notifySubscribers(this.availableObserver, LocaleService.available);
     }
 
     protected findByCode(code: string): Locale
     {
-        if (!this.available) {
+        if (!LocaleService.available) {
             return null;
         }
 
-       return this.available.find(locale => locale && locale.code == code);
+       return LocaleService.available.find(locale => locale && locale.code == code);
     }
 
     protected notifySubscribers(observer: Observer<any>, data: any): void

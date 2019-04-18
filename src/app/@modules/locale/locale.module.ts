@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { LocaleService } from './services/locale.service';
 import { LocaleRoute } from './locale.routing';
@@ -30,5 +30,13 @@ import { LocaleResolver } from './resolvers/locale.resolver';
 })
 export class LocaleModule
 {
-    //
+    static forRoot(): ModuleWithProviders
+    {
+        return {
+            ngModule: LocaleModule,
+            providers: [
+                LocaleService
+            ]
+        };
+    }
 }

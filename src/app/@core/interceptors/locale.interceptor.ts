@@ -24,8 +24,8 @@ export class LocaleInterceptor implements HttpInterceptor
 
     protected getHeaders(): any
     {
-        if (this.localeService.current) {
-            return { locale: this.localeService.current.code };
+        if (LocaleService.current) {
+            return { locale: LocaleService.current.code };
         }
 
         if (localStorage.getItem('locale')) {
