@@ -53,10 +53,15 @@ export abstract class ResourceDetailsComponent<Model extends Resource<Model>, Mo
     public ngOnInit(): void
     {
         this.routeSubscription = this.route.data.subscribe(data => {
-            this.resource = data.item;
+            this.resource = this.initResource(data.item);
 
             this.form = this.formBuilder.group(this.getFormBuilderParams());
         });
+    }
+
+    protected initResource(model: Model): Model
+    {
+        return model;
     }
 
     protected getFormBuilderParams(): any
