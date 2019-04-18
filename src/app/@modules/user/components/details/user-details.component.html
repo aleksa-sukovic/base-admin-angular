@@ -37,9 +37,10 @@
                     </div>
                 </div>
             </div>
+
             <div class="row">
                 <div class="col-sm-12">
-                    <div class="form-group mb-0">
+                    <div class="form-group">
                         <div class="row full-name-inputs">
                             <div class="col-sm-3 col-form-label">
                                 Birth Date
@@ -51,6 +52,25 @@
                                     formControlName="birth_date"
                                     >
                                 <nb-datepicker #datepicker [date]="resource.birth_date"></nb-datepicker>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group mb-0">
+                        <div class="row full-name-inputs">
+                            <div class="col-sm-3 col-form-label">
+                                Gender
+                            </div>
+                            <div class="form-group col-sm-9">
+                                <select formControlName="gender" class="form-control">
+                                    <option value="m">Male</option>
+                                    <option value="f">Female</option>
+                                    <option value="o">Other</option>
+                                </select>
                             </div>
                         </div>
                     </div>

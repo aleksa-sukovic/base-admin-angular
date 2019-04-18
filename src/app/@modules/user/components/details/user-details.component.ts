@@ -22,6 +22,15 @@ export class UserDetailsComponent extends ResourceDetailsComponent<User, UserSer
         this.resourceService = injector.get(UserService);
     }
 
+    protected initResource(user: User): User
+    {
+        if (!user.gender) {
+            user.gender = 'm';
+        }
+
+        return user;
+    }
+
     protected getFillable(): Attribute[]
     {
         return [
@@ -39,8 +48,18 @@ export class UserDetailsComponent extends ResourceDetailsComponent<User, UserSer
             {
                 name: 'birth_date',
                 validator: [],
-                init: (value: any) => new Date(value),
+                init: (value: any) => {
+                    if (value) {
+                        return new Date(value);
+                    }
+
+                    return new Date();
+                },
                 apply: (field) => moment(field.value).format('YYYY-MM-DD') + ' 12:00:00'
+            },
+            {
+                name: 'gender',
+                validator: Validators.required
             }
         ];
     }
