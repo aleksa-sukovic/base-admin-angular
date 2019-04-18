@@ -21,10 +21,6 @@ export class SidebarMenuService
                     {
                         title: 'All Locales',
                         link: '/locales'
-                    },
-                    {
-                        title: 'Add Locale',
-                        link: '/locales/add'
                     }
                 ]
             },

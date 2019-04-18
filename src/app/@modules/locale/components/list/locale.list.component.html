@@ -12,7 +12,6 @@
         <table class="table table-hover table-bordered table-list" [ngClass]="{ 'hidden': semaphores.loading }">
             <thead>
                 <tr>
-                    <th>Actions</th>
                     <th scope="col" sortable="id" (sort)="onSort($event)">ID</th>
                     <th scope="col" sortable="name" (sort)="onSort($event)">Name</th>
                     <th scope="col" sortable="code" (sort)="onSort($event)">Code</th>
@@ -20,13 +19,6 @@
             </thead>
             <tbody *ngIf="data">
                 <tr *ngFor="let locale of data">
-                    <td class="table-actions">
-                        <table-actions
-                            [resource]="locale"
-                            (onEdit)="viewResource(locale)"
-                            (onDelete)="deleteResource(locale)">
-                        </table-actions>
-                    </td>
                     <td>{{ locale.id }}</td>
                     <td>{{ locale.translation.name }}</td>
                     <td>{{ locale.code }}</td>
