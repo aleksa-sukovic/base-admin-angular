@@ -3,17 +3,12 @@ import { ModuleWithProviders } from '@angular/compiler/src/core';
 import { LocaleService } from '../@modules/locale/services/locale.service';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { ApiService } from './services/api.service';
-import { Initializer } from './services/initializer.service';
+import { LocaleInitializer } from '../@modules/locale/initializers/locale-initializer.service';
 import { SidebarMenuService } from './services/sidebar.menu.service';
 import { ThemeModule } from '../@theme/theme.module';
 import { NbLayoutModule } from '@nebular/theme';
 import { RouterStateService } from './services/router.state.service';
 import {LocaleInterceptor} from './interceptors/locale.interceptor';
-
-export function initialize(initializer: Initializer)
-{
-    return (): Promise<void> => initializer.init();
-}
 
 @NgModule({
     declarations: [
@@ -49,12 +44,6 @@ export class CoreModule
                 ApiService,
                 SidebarMenuService,
                 RouterStateService,
-                {
-                    provide: APP_INITIALIZER,
-                    useFactory: initialize,
-                    deps: [Initializer, LocaleService],
-                    multi: true
-                },
                 {
                     provide: HTTP_INTERCEPTORS,
                     useClass: LocaleInterceptor,

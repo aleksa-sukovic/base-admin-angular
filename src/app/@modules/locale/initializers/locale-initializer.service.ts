@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { LocaleService } from '../../@modules/locale/services/locale.service';
+import { LocaleService } from '../services/locale.service';
 
 @Injectable({
     providedIn: 'root'
 })
-export class Initializer
+export class LocaleInitializer
 {
     constructor(private localeService: LocaleService)
     {
