@@ -6,7 +6,7 @@
     </nb-card-header>
     <nb-card-body>
         <!-- Controls -->
-        <per-page-selector *ngIf="data && data.length" (perPageChange)="onPerPageChange($event)"></per-page-selector>
+        <per-page-selector *ngIf="data && data.length" [selected]="perPage" (perPageChange)="onPerPageChange($event)"></per-page-selector>
 
         <!-- Data -->
         <table class="table table-hover table-bordered table-list" [ngClass]="{ 'hidden': semaphores.loading }">

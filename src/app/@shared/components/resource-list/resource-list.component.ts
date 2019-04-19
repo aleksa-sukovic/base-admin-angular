@@ -3,7 +3,6 @@ import {SortableTableHeaderDirective, SortEvent} from '../../directives/tables/s
 import {Resource} from 'src/app/@core/models/resource.model';
 import {ResourceService} from 'src/app/@core/services/resource.service';
 import {ResourceBaseComponent} from './resource-base.component';
-import {NbToastStatus} from '@nebular/theme/components/toastr/model';
 
 @Injectable()
 export abstract class ResourceList<Model extends Resource<Model>, ModelService extends ResourceService<Model>>
@@ -57,6 +56,7 @@ extends ResourceBaseComponent<Model, ModelService>
             this.setTableSortHeaders(params);
 
             this.routerState.addQueryParams(params);
+            this.perPage = params.limit || 5;
 
             this.getData(this.getParams(this.routerState.queryParams), false);
         });

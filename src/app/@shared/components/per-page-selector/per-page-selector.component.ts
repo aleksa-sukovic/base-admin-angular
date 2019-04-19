@@ -1,16 +1,15 @@
-import { Component, Output, Input, EventEmitter } from '@angular/core';
+import { Component, Output, Input, EventEmitter, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'per-page-selector',
-  templateUrl: './per-page-selector.component.html',
-  styleUrls: ['./per-page-selector.component.scss']
+    selector: 'per-page-selector',
+    templateUrl: './per-page-selector.component.html',
+    styleUrls: ['./per-page-selector.component.scss']
 })
-export class PerPageSelectorComponent
+export class PerPageSelectorComponent implements OnInit
 {
+    @Input() selected: number;
     @Output() perPageChange = new EventEmitter();
     @Input() values: number[];
-
-    protected selected: number;
 
     constructor()
     {
@@ -18,7 +17,13 @@ export class PerPageSelectorComponent
             this.values = [5, 10, 20];
         }
 
-        this.selected = this.values[0];
+        if (!this.selected) {
+            this.selected = this.values[0];
+        }
+    }
+
+    ngOnInit(): void
+    {
     }
 
     protected onPerPageChange()
