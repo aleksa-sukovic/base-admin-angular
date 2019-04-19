@@ -56,7 +56,7 @@ extends ResourceBaseComponent<Model, ModelService>
             this.setTableSortHeaders(params);
 
             this.routerState.addQueryParams(params);
-            this.perPage = params.limit || 5;
+            this.perPage = params.limit || this.perPage;
 
             this.getData(this.getParams(this.routerState.queryParams), false);
         });
@@ -69,13 +69,6 @@ extends ResourceBaseComponent<Model, ModelService>
 
             this.getData(this.getParams(this.routerState.queryParams));
         });
-    }
-
-    public ngOnInit()
-    {
-        super.ngOnInit();
-
-        this.getData(this.getParams(this.routerState.queryParams));
     }
 
     public viewResource(resource: Model): void
