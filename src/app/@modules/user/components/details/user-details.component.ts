@@ -1,5 +1,5 @@
 import { Component, Injector } from '@angular/core';
-import { Validators } from '@angular/forms';
+import { Validators, AbstractControl } from '@angular/forms';
 import { Attribute } from 'src/app/@shared/components/resource-details/attribute.interface';
 import { ResourceDetailsComponent } from 'src/app/@shared/components/resource-details/resource-details.component';
 import { User } from '../../models/user.model';
@@ -60,7 +60,17 @@ export class UserDetailsComponent extends ResourceDetailsComponent<User, UserSer
             {
                 name: 'gender',
                 validator: Validators.required
+            },
+            {
+                name: 'group',
+                validator: Validators.required,
+                apply: (field: AbstractControl) => this.resource.group_id = field.value
             }
         ];
+    }
+
+    protected onGroupSelected(group: any)
+    {
+        this.form.controls['group'].setValue(group.id);
     }
 }

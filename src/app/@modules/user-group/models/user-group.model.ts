@@ -10,4 +10,14 @@ export class UserGroup extends Resource<UserGroup>
         this.id = this.getIntValue('id', data);
         this.name = this.getStringValue('name', data);
     }
+
+    public getDisplayName()
+    {
+        switch(this.name) {
+            case 'super-admin': return 'Super Admin';
+            case 'admin': return 'Admin';
+            case 'editor': return 'Editor';
+            case 'user': return 'User';
+        }
+    }
 }

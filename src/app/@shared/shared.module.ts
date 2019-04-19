@@ -25,7 +25,7 @@ import { ResourceEditActions } from './components/resource-edit-action/resource-
         SidebarComponent,
         ResourceDetailsHeaderComponent,
         PerPageSelectorComponent,
-        ResourceEditActions
+        ResourceEditActions,
     ],
     entryComponents: [
         DeleteResourceDialogComponent

@@ -1,0 +1,5 @@
+<div class="form-group select-form-group">
+    <select [(ngModel)]="selected" (change)="onResourceSelected()" class="form-control">
+        <option *ngFor="let item of data" [ngValue]="item">{{ item.getDisplayName() }}</option>
+    </select>
+</div>

@@ -7,6 +7,7 @@ import { UserService } from './services/user.service';
 import { UserListComponent } from './components/list/user-list.component';
 import { UserDetailsComponent } from './components/details/user-details.component';
 import { UserResolver } from './resolvers/user.resolver';
+import { UserGroupModule } from '../user-group/user-group.module';
 
 @NgModule({
     declarations: [
@@ -18,7 +19,8 @@ import { UserResolver } from './resolvers/user.resolver';
         LocaleRoute,
         ThemeModule,
         SharedModule,
-        RouterModule
+        RouterModule,
+        UserGroupModule
     ],
     providers: [
         UserService,

@@ -7,6 +7,7 @@ export class User extends Resource<User>
     public email: string;
     public gender: string;
     public birth_date: string;
+    public group_id: number;
 
     protected initialize(data?: any): void
     {
@@ -15,5 +16,6 @@ export class User extends Resource<User>
         this.email = this.getStringValue('email', data);
         this.gender = this.getStringValue('gender', data);
         this.birth_date = this.getStringValue('birth_date', data);
+        this.group_id = this.getIntValue('group_id', data);
     }
 }
