@@ -1,0 +1,42 @@
+<nb-card>
+    <nb-card-header>
+        All user groups
+    </nb-card-header>
+    <nb-card-body>
+        <!-- Controls -->
+        <per-page-selector *ngIf="data && data.length" [selected]="perPage" (perPageChange)="onPerPageChange($event)"></per-page-selector>
+
+        <!-- Data -->
+        <table class="table table-hover table-bordered table-list text-center" [ngClass]="{ 'hidden': semaphores.loading }">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Group Name</th>
+                </tr>
+            </thead>
+            <tbody *ngIf="data">
+                <tr *ngFor="let group of data">
+                    <td>{{ group.id }}</td>
+                    <td>{{ group.name }}</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Pagination -->
+        <table-pagination [perPage]="perPage" [totalCount]="totalCount" *ngIf="!semaphores.loading && semaphores.hasData"
+            (pageSelect)="onPageSelect($event)">
+        </table-pagination>
+
+        <!-- Loader -->
+        <div class="text-center" *ngIf="semaphores.loading">
+            <div class="spinner-border text-secondary" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+
+        <!-- No results -->
+        <div class="lead text-center p-4"  *ngIf="semaphores.noData">
+            We're sorry there are no results!
+        </div>
+    </nb-card-body>
+</nb-card>

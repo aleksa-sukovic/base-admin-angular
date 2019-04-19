@@ -27,7 +27,7 @@ export class SidebarMenuService
             {
                 title: 'Users',
                 expanded: false,
-                icon: 'fas fa-users',
+                icon: 'fas fa-user',
                 children: [
                     {
                         title: 'All Users',
@@ -36,6 +36,17 @@ export class SidebarMenuService
                     {
                         title: 'Add User',
                         link: '/users/add'
+                    }
+                ]
+            },
+            {
+                title: 'User Groups',
+                expanded: false,
+                icon: 'fas fa-users',
+                children: [
+                    {
+                        title: 'All User groups',
+                        link: '/user-groups'
                     }
                 ]
             }

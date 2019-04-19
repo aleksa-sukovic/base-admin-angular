@@ -11,6 +11,7 @@ import { SharedModule } from './@shared/shared.module';
 import { DashboardModule } from './@modules/dashboard/dashboard.module';
 import { LocaleModule } from './@modules/locale/locale.module';
 import { UserModule } from './@modules/user/user.module';
+import { UserGroupModule } from './@modules/user-group/user-group.module';
 
 @NgModule({
     declarations: [
@@ -28,11 +29,12 @@ import { UserModule } from './@modules/user/user.module';
         DashboardModule,
         LocaleModule.forRoot(),
         UserModule,
+        UserGroupModule,
 
         // 3rd party
         BrowserModule,
         BrowserAnimationsModule,
-        NbThemeModule.forRoot({name: 'corporate'}),
+        NbThemeModule.forRoot({name: 'default'}),
         NbLayoutModule,
         ThemeModule.forRoot(),
         ThemeModule
