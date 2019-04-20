@@ -1,4 +1,5 @@
 import { Resource } from 'src/app/@core/models/resource.model';
+import { UserGroup } from '../../user-group/models/user-group.model';
 
 export class User extends Resource<User>
 {
@@ -8,6 +9,7 @@ export class User extends Resource<User>
     public gender: string;
     public birth_date: string;
     public group_id: number;
+    public group: UserGroup;
 
     protected initialize(data?: any): void
     {
@@ -17,5 +19,35 @@ export class User extends Resource<User>
         this.gender = this.getStringValue('gender', data);
         this.birth_date = this.getStringValue('birth_date', data);
         this.group_id = this.getIntValue('group_id', data);
+        this.group = this.initializeGroup(data);
+    }
+
+    protected initializeGroup(data?: any): UserGroup
+    {
+        if (!data || !data.group) {
+            return null;
+        }
+
+        return new UserGroup(data.group);
+    }
+
+    public isAdmin(): boolean
+    {
+        return this.group && this.group.name === 'admin';
+    }
+
+    public isSuperAdmin(): boolean
+    {
+        return this.group && this.group.name === 'super-admin';
+    }
+
+    public isEditor(): boolean
+    {
+        return this.group && this.group.name === 'editor';
+    }
+
+    public isUser(): boolean
+    {
+        return this.group && this.group.name === 'user';
     }
 }
