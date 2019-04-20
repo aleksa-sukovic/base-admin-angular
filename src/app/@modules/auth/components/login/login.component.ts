@@ -1,5 +1,5 @@
 import { Component, Output, Input, EventEmitter, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 import { RouterStateService } from 'src/app/@core/services/router.state.service';
 import { NbToastrService } from '@nebular/theme';
 

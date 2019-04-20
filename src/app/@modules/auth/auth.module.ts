@@ -3,7 +3,7 @@ import { AuthService } from './services/auth.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { AuthInitializer } from './initializers/auth.initializer';
-import { LoginComponent } from './components/login.component';
+import { LoginComponent } from './components/login/login.component';
 import { ThemeModule } from 'src/app/@theme/theme.module';
 import { AuthRoute } from './auth.routing';
 import { MissingPermissionPageComponent } from './components/missing-permissions-page/missing-permissions-page.component';
