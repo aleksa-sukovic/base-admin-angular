@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NbMenuItem, NbSidebarService } from '@nebular/theme';
 import {SidebarMenuService} from '../../../@core/services/sidebar.menu.service';
-import { AuthService } from 'src/app/@modules/auth/services/auth.service';
 import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/@modules/auth/services/auth.service';
 
 @Component({
   selector: 'sidebar',
