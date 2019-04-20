@@ -32,7 +32,13 @@ export class LayoutHeaderComponent implements OnInit, OnDestroy
 
     public ngOnInit(): void
     {
-        this.isLoggedInSubscription = AuthService.isLoggedInObservable.subscribe(loggedIn => this.isLoggedIn = loggedIn);
+        this.isLoggedInSubscription = AuthService.isLoggedInObservable.subscribe(loggedIn => {
+            this.isLoggedIn = loggedIn;
+
+            if (this.isLoggedIn) {
+                this.user = AuthService.getUser();
+            }
+        });
     }
 
     public ngOnDestroy(): void
