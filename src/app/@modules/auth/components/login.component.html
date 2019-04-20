@@ -1,0 +1,53 @@
+<form (ngSubmit)="submit()" #loginForm="ngForm">
+    <nb-card>
+        <nb-card-header>
+            <h1 class="title">Login</h1>
+        </nb-card-header>
+        <nb-card-body>
+            <div class="row justify-content-center mb-3">
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <input
+                            #emailInput="ngModel"
+                            [(ngModel)]="email"
+                            fullwidth
+                            nbinput
+                            placeholder="Email"
+                            shape="semi-round"
+                            type="email"
+                            class="input-full-width input-md input-semi-round"
+                            required
+                            [ngClass]="{ 'input-danger': emailInput.invalid && !emailInput.pristine }"
+                            name="email"
+                            >
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center mb-3">
+                <div class="col-sm-6">
+                    <input
+                        #passwordInput="ngModel"
+                        [(ngModel)]="password"
+                        fullwidth
+                        nbinput
+                        placeholder="Password"
+                        shape="semi-round"
+                        type="password"
+                        class="input-full-width input-md input-semi-round"
+                        required
+                        [ngClass]="{ 'input-danger': passwordInput.invalid && !passwordInput.pristine }"
+                        name="password"
+                        >
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-sm-6 text-center">
+                    <button type="submit" [disabled]="semaphores.loading || loginForm.invalid" class="btn btn-primary btn-outline">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </nb-card-body>
+    </nb-card>
+
+</form>
