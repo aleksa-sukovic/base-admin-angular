@@ -1,17 +1,32 @@
 <nb-layout>
 
-    <nb-layout-header fixed>
+    <!-- Logged In -->
+    <nb-layout-header fixed *ngIf="isLoggedIn">
         <a href="" (click)="toggleSidebar()">
             <i class="fas fa-bars"></i>
         </a>
 
-        <language-picker (languageChange)="onLanguageChange($event)"></language-picker>
+        <div class="nav-right">
+            <language-picker (languageChange)="onLanguageChange($event)"></language-picker>
+
+            <nb-actions size="medium" class="right medium">
+                <nb-action icon="fas fa-sign-out-alt" (click)="logOut()"></nb-action>
+            </nb-actions>
+        </div>
     </nb-layout-header>
 
-    <nb-sidebar>
+    <nb-sidebar *ngIf="isLoggedIn">
         <sidebar></sidebar>
     </nb-sidebar>
 
+    <!-- Not Logged In -->
+    <nb-layout-header fixed *ngIf="!isLoggedIn">
+        <div class="nav-right">
+            <language-picker (languageChange)="onLanguageChange($event)"></language-picker>
+        </div>
+    </nb-layout-header>
+
+    <!-- Common -->
     <nb-layout-column>
         <router-outlet></router-outlet>
     </nb-layout-column>

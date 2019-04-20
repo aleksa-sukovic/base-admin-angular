@@ -12,6 +12,7 @@ import { DashboardModule } from './@modules/dashboard/dashboard.module';
 import { LocaleModule } from './@modules/locale/locale.module';
 import { UserModule } from './@modules/user/user.module';
 import { UserGroupModule } from './@modules/user-group/user-group.module';
+import { AuthModule } from './@modules/auth/auth.module';
 
 @NgModule({
     declarations: [
@@ -26,6 +27,7 @@ import { UserGroupModule } from './@modules/user-group/user-group.module';
         SharedModule,
 
         // Custom
+        AuthModule.forRoot(),
         DashboardModule,
         LocaleModule.forRoot(),
         UserModule,

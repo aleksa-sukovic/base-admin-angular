@@ -1,6 +1,16 @@
-language-picker
+@import './@theme/styles/colors';
+
+.nav-right
 {
+    display: flex;
+    flex-direction: row;
     position: absolute;
     right: 2.25rem;
     top: 20px;
+}
+
+nb-action
+{
+    padding: 5px !important;
+    padding-left: 20px !important;
 }

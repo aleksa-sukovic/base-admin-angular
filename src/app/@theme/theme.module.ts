@@ -1,7 +1,7 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbCardModule, NbMenuModule, NbDialogModule, NbToastrModule, NbDatepickerModule } from '@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbSidebarModule, NbCardModule, NbMenuModule, NbDialogModule, NbToastrModule, NbDatepickerModule, NbActionsModule, NbUserModule } from '@nebular/theme';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 const BASE_MODULES = [CommonModule, FormsModule, ReactiveFormsModule];
@@ -14,7 +14,9 @@ const NB_MODULES = [
     NgbModule,
     NbDialogModule,
     NbToastrModule,
-    NbDatepickerModule
+    NbDatepickerModule,
+    NbActionsModule,
+    NbUserModule
 ];
 
 const NB_THEME_PROVIDERS = [
@@ -23,7 +25,7 @@ const NB_THEME_PROVIDERS = [
     ...NbMenuModule.forRoot().providers,
     ...NbDialogModule.forRoot().providers,
     ...NbToastrModule.forRoot().providers,
-    ...NbDatepickerModule.forRoot().providers
+    ...NbDatepickerModule.forRoot().providers,
 ];
 
 @NgModule({
