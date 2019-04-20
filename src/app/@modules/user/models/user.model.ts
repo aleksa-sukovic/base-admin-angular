@@ -18,8 +18,8 @@ export class User extends Resource<User>
         this.email = this.getStringValue('email', data);
         this.gender = this.getStringValue('gender', data);
         this.birth_date = this.getStringValue('birth_date', data);
-        this.group_id = this.getIntValue('group_id', data);
         this.group = this.initializeGroup(data);
+        this.group_id = this.group && this.group.id ? this.group.id : this.getIntValue('group_id', data);
     }
 
     protected initializeGroup(data?: any): UserGroup
