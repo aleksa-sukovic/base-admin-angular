@@ -5,6 +5,7 @@ import { User } from 'src/app/@modules/user/models/user.model';
 import { RouterStateService } from 'src/app/@core/services/router.state.service';
 import { LanguagePickerComponent } from '../language-picker/language-picker.component';
 import { LocaleService } from 'src/app/@modules/locale/services/locale.service';
+import { NbPopoverDirective } from '@nebular/theme';
 
 @Component({
   selector: 'layout-header',
@@ -17,6 +18,7 @@ export class LayoutHeaderComponent implements OnInit, OnDestroy
     @Output() languageChange = new EventEmitter;
 
     @ViewChild(LanguagePickerComponent) protected languagePickerComponent: LanguagePickerComponent;
+    @ViewChild(NbPopoverDirective) popover: NbPopoverDirective;
 
     protected isLoggedInSubscription: Subscription;
     protected languageChangeSubscription: Subscription;
@@ -52,6 +54,13 @@ export class LayoutHeaderComponent implements OnInit, OnDestroy
         this.authService.logout();
 
         this.routerState.navigate(['login']);
+    }
+
+    protected viewProfile(): void
+    {
+        this.routerState.navigate(['users', this.user.id]);
+
+        this.popover.hide();
     }
 
     protected onLanguageChange(event: any): void

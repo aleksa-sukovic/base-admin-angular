@@ -19,6 +19,7 @@
     <nb-card class="mb-0 user-actions">
         <nb-card-header class="font-weight-light">{{ user.full_name }}</nb-card-header>
         <nb-list>
+            <nb-list-item (click)="viewProfile()">Profile</nb-list-item>
             <nb-list-item (click)="logOut()">Logout</nb-list-item>
         </nb-list>
     </nb-card>

@@ -27,6 +27,11 @@ nb-user
         text-align: center;
     }
 
+    & nb-list
+    {
+        text-align: center;
+    }
+
     & nb-list-item:hover
     {
         cursor: pointer;
