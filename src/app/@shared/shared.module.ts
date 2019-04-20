@@ -12,6 +12,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { ResourceDetailsHeaderComponent } from './components/resource-details-header/resource-details-header.component';
 import { PerPageSelectorComponent } from './components/per-page-selector/per-page-selector.component';
 import { ResourceEditActions } from './components/resource-edit-action/resource-edit-actions.component';
+import { LayoutHeaderComponent } from './components/layout-header/layout-header.component';
 
 @NgModule({
     declarations: [
@@ -26,6 +27,7 @@ import { ResourceEditActions } from './components/resource-edit-action/resource-
         ResourceDetailsHeaderComponent,
         PerPageSelectorComponent,
         ResourceEditActions,
+        LayoutHeaderComponent
     ],
     entryComponents: [
         DeleteResourceDialogComponent
@@ -48,7 +50,8 @@ import { ResourceEditActions } from './components/resource-edit-action/resource-
         SidebarComponent,
         ResourceDetailsHeaderComponent,
         PerPageSelectorComponent,
-        ResourceEditActions
+        ResourceEditActions,
+        LayoutHeaderComponent
     ]
 })
 export class SharedModule

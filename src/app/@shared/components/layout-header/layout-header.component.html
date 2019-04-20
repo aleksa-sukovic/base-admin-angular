@@ -1,0 +1,26 @@
+<a (click)="onToggleSidebar()" class="clickable">
+    <i class="fas fa-bars"></i>
+</a>
+
+<div class="nav-right">
+    <language-picker (languageChange)="onLanguageChange($event)"></language-picker>
+
+    <nb-user
+        *ngIf="isLoggedIn && user"
+        [name]="user.full_name"
+        class="clickable"
+        onlyPicture
+        [nbPopover]="userActionsTpl"
+        nbPopoverPlacement="bottom"></nb-user>
+
+</div>
+
+<ng-template #userActionsTpl>
+    <nb-card class="mb-0 user-actions">
+        <nb-card-header class="font-weight-light p-2">{{ user.full_name }}</nb-card-header>
+        <nb-list>
+            <nb-list-item (click)="logOut()">Logout</nb-list-item>
+        </nb-list>
+    </nb-card>
+</ng-template>
+

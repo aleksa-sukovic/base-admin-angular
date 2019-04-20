@@ -1,0 +1,36 @@
+@import '../../../@theme/styles/colors';
+
+.nav-right
+{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    position: absolute;
+    right: 2.25rem;
+    top: 18px;
+}
+
+language-picker
+{
+    align-self: center;
+}
+
+nb-user
+{
+    padding-left: 18px;
+}
+
+.user-actions
+{
+    & nb-card-header
+    {
+        padding: 5px;
+        text-align: center;
+    }
+
+    & nb-list-item:hover
+    {
+        cursor: pointer;
+        background-color: lighten($color: $accent, $amount: 15);
+    }
+}
