@@ -1,7 +1,7 @@
 import { ApiService } from '../../../@core/services/api.service';
 import { Injectable } from '@angular/core';
 import { User } from 'src/app/@modules/user/models/user.model';
-import { Observer, Observable } from 'rxjs';
+import { Observer, Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
@@ -10,9 +10,8 @@ export class AuthService
 {
     private static user: User;
     private static isUserLoggedIn: boolean;
-    private static isLoggedInObserver: Observer<boolean>;
-
-    public static isLoggedInObservable: Observable<boolean> = new Observable(observer => AuthService.isLoggedInObserver = observer);
+    private static isLoggedInObserver: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+    public static isLoggedInObservable = AuthService.isLoggedInObserver.asObservable();
 
     constructor(private apiService: ApiService)
     {
@@ -27,12 +26,10 @@ export class AuthService
 
         try {
             const httpResponse = await this.apiService.post('auth/refresh').toPromise();
-
             let responseData = httpResponse.body.data;
-            this.setUser(responseData.user);
-            localStorage.setItem('access_token', responseData.token);
 
-            AuthService.isLoggedInObserver.next(true);
+            localStorage.setItem('access_token', responseData.token);
+            this.setUser(responseData.user);
 
             return Promise.resolve({ authenticated: true });
         } catch (error) {
@@ -46,8 +43,8 @@ export class AuthService
             const httpResponse = await this.apiService.post('auth/login', { email, password }).toPromise();
             let responseData = httpResponse.body.data;
 
-            this.setUser(responseData.user);
             localStorage.setItem('access_token', responseData.token);
+            this.setUser(responseData.user);
 
             return Promise.resolve({ success: true });
         } catch (error) {
