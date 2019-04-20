@@ -41,10 +41,10 @@ extends ResourceBaseComponent<Model, ModelService>
             this.data = data.getCollection();
 
             if (useLoader) {
-                this.semaphores.noData = this.data && !this.data.length;
-                this.semaphores.hasData = !this.semaphores.noData;
                 this.semaphores.loading = false;
             }
+            this.semaphores.noData = this.data && !this.data.length;
+            this.semaphores.hasData = !this.semaphores.noData;
 
             this.totalCount = parseInt(data.getRaw().count, 10);
         });
