@@ -96,7 +96,7 @@ export abstract class ResourceDetailsComponent<Model extends Resource<Model>, Mo
 
             return;
         }
-console.log(this.resource);
+
         this.beforeSave();
         this.save();
     }
@@ -135,6 +135,7 @@ console.log(this.resource);
         this.semaphores.hasErrors = true;
         this.semaphores.loading = false;
         this.semaphores.formSubmitted = false;
+        this.errors = error.error.errors;
         this.showToast('Validation errors', 'Please review and fix shown errors', NbToastStatus.DANGER);
     }
 

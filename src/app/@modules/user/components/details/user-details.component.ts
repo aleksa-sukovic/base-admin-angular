@@ -72,13 +72,6 @@ export class UserDetailsComponent extends ResourceDetailsComponent<User, UserSer
         ];
     }
 
-    protected onSaveError(error: any): void
-    {
-        super.onSaveError(error);
-
-        this.errors = error.error.errors;
-    }
-
     protected onGroupSelected(group: any)
     {
         this.form.controls['group'].setValue(group);
