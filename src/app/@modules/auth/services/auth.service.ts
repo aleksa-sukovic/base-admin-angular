@@ -62,6 +62,26 @@ export class AuthService
         );
     }
 
+    public requestCredentialsReset(user: User): Observable<{ [key: string]: boolean }>
+    {
+        let data = user.id == AuthService.user.id ? {} : { user_id: user.id };
+
+        return this.apiService.post('auth/request-reset', data).pipe(
+            map(response => {
+                return { success: response.status == 200 }
+            })
+        );
+    }
+
+    public resetCredentials(code: string, data: any): Observable<{ [key: string]: boolean }>
+    {
+        return this.apiService.post('auth/' + code + '/reset', data).pipe(
+            map(response => {
+                return { success: response.status == 200 }
+            })
+        );
+    }
+
     public logout(): void
     {
         localStorage.removeItem('access_token');

@@ -5,6 +5,8 @@ import { ResourceDetailsComponent } from 'src/app/@shared/components/resource-de
 import { User } from '../../models/user.model';
 import { UserService } from '../../services/user.service';
 import * as moment from 'moment'
+import { AuthService } from 'src/app/@modules/auth/services/auth.service';
+import { NbToastStatus } from '@nebular/theme/components/toastr/model';
 
 @Component({
   selector: 'user-details',
@@ -14,12 +16,16 @@ import * as moment from 'moment'
 export class UserDetailsComponent extends ResourceDetailsComponent<User, UserService>
 {
     protected baseUrl = 'users';
+    protected loggedInUser: User;
+    protected authService: AuthService;
 
     constructor(injector: Injector)
     {
         super(injector);
 
+        this.authService = injector.get(AuthService);
         this.resourceService = injector.get(UserService);
+        this.loggedInUser = AuthService.getUser();
     }
 
     protected initResource(user: User): User
@@ -75,5 +81,29 @@ export class UserDetailsComponent extends ResourceDetailsComponent<User, UserSer
     protected onGroupSelected(group: any)
     {
         this.form.controls['group'].setValue(group);
+    }
+
+    protected requestCredentialsReset()
+    {
+        if (this.semaphores.loading) {
+            return;
+        }
+
+        this.semaphores.loading = true;
+        this.authService.requestCredentialsReset(this.resource).subscribe(result => {
+            if (result.success) {
+                this.showToast('Success', 'Please check your email.')
+                this.semaphores.loading = false;
+
+                return;
+            }
+
+            this.showToast('Failure', 'Please try again', NbToastStatus.DANGER);
+            this.semaphores.loading = false;
+        }, () => {
+            this.showToast('Failure', 'Please try again.', NbToastStatus.DANGER);
+
+            this.semaphores.loading = false;
+        });
     }
 }

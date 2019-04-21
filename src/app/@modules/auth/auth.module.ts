@@ -8,6 +8,8 @@ import { ThemeModule } from 'src/app/@theme/theme.module';
 import { AuthRoute } from './auth.routing';
 import { MissingPermissionPageComponent } from './components/missing-permissions-page/missing-permissions-page.component';
 import { ActivateUserComponent } from './components/activate-user/activate-user.component';
+import { ResetCredentialsComponent } from './components/reset-credentials/reset-credentials.component';
+import { SharedModule } from 'src/app/@shared/shared.module';
 
 export function initializeAuth(initializer: AuthInitializer)
 {
@@ -18,15 +20,18 @@ export function initializeAuth(initializer: AuthInitializer)
     declarations: [
         LoginComponent,
         MissingPermissionPageComponent,
-        ActivateUserComponent
+        ActivateUserComponent,
+        ResetCredentialsComponent
     ],
     imports: [
         ThemeModule,
-        AuthRoute
+        AuthRoute,
+        SharedModule
     ],
     exports: [
         LoginComponent,
-        ActivateUserComponent
+        ActivateUserComponent,
+        ResetCredentialsComponent
     ],
     providers: [
         //

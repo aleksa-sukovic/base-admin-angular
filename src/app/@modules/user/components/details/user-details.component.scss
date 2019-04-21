@@ -1,1 +1,11 @@
+.credentials-reset
+{
+    & p
+    {
+        font-size: 14px;
 
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

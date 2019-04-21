@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { MissingPermissionPageComponent } from './components/missing-permissions-page/missing-permissions-page.component';
 import { ActivateUserComponent } from './components/activate-user/activate-user.component';
+import { ResetCredentialsComponent } from './components/reset-credentials/reset-credentials.component';
 
 const routes: Routes = [
     {
@@ -16,6 +17,10 @@ const routes: Routes = [
     {
         path: 'activate/:code',
         component: ActivateUserComponent
+    },
+    {
+        path: 'reset-credentials/:code',
+        component: ResetCredentialsComponent
     }
 ];
 

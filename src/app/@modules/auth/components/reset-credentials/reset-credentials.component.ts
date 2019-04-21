@@ -6,15 +6,16 @@ import { AuthService } from '../../services/auth.service';
 import { RouterStateService } from 'src/app/@core/services/router.state.service';
 
 @Component({
-  selector: 'activate-user',
-  templateUrl: './activate-user.component.html',
-  styleUrls: ['./activate-user.component.scss']
+  selector: 'reset-credentials',
+  templateUrl: './reset-credentials.component.html',
+  styleUrls: ['./reset-credentials.component.scss']
 })
-export class ActivateUserComponent
+export class ResetCredentialsComponent
 {
     protected form: FormGroup;
-    protected activateCode: string;
+    protected passwordResetCode: string;
     protected semaphores: any;
+    protected errors: any;
 
     constructor(formBuilder: FormBuilder, activatedRoute: ActivatedRoute, protected toastService: NbToastrService, protected authService: AuthService, protected routerState: RouterStateService)
     {
@@ -23,10 +24,11 @@ export class ActivateUserComponent
             password_confirmation: ['', Validators.required]
         });
 
-        this.activateCode = activatedRoute.snapshot.paramMap.get('code');
+        this.passwordResetCode = activatedRoute.snapshot.paramMap.get('code');
         this.semaphores = {
             formSubmitted: false,
-            loading: false
+            loading: false,
+            hasErrors: false
         };
     }
 
@@ -34,22 +36,20 @@ export class ActivateUserComponent
     {
         this.semaphores.formSubmitted = true;
         this.semaphores.loading = true;
+        this.semaphores.hasErrors = false;
 
         if (this.form.invalid) {
-            this.toastService.danger('Please correctly fill in all of the fields!', 'Validation exception');
-
+            this.toastService.danger('Please correctly fill in all of the fields.', 'Validation exception');
+            this.semaphores.loading = false;
             return;
         }
 
-        if (this.form.get('password').value !== this.form.get('password_confirmation').value) {
-            this.toastService.danger('Passwords do not match!', 'Validation exception');
-
-            return;
-        }
-
-        this.authService.activate(this.activateCode, this.form.get('password').value, this.form.get('password_confirmation').value).subscribe(value => {
-            if (value.activated) {
-                this.toastService.success('Success', 'Your account has been activated!');
+        this.authService.resetCredentials(this.passwordResetCode, {
+            password: this.form.get('password').value,
+            password_confirmation: this.form.get('password_confirmation').value
+        }).subscribe(result => {
+            if (result.success) {
+                this.toastService.success('Success', 'You can now log in with your new credentials!');
 
                 this.routerState.navigate(['login']);
 
@@ -57,6 +57,12 @@ export class ActivateUserComponent
             }
 
             this.toastService.danger('Failure', 'Please try again');
-        }, () => this.toastService.danger('Failure', 'Server error. Please try again.'));
+        }, (error) => {
+            if (error.error && error.error.code == 'ValidationException') {
+                this.errors = error.error.errors;
+                this.semaphores.hasErrors = true;
+                this.semaphores.loading = false;
+            }
+        });
     }
 }
