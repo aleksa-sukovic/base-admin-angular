@@ -1,10 +1,16 @@
 import { Injectable } from '@angular/core';
 import { NbMenuItem } from '@nebular/theme';
 import { AuthService } from 'src/app/@modules/auth/services/auth.service';
+import { TranslatorService } from 'src/app/@modules/locale/services/translator.service';
 
 @Injectable()
 export class SidebarMenuService
 {
+
+    constructor(private translator: TranslatorService)
+    {
+        //
+    }
 
     public getItems(): NbMenuItem[]
     {
@@ -17,66 +23,73 @@ export class SidebarMenuService
 
     protected getAdminSidebar(): NbMenuItem[]
     {
+        const items = this.defineItems();
+
         return [
-            this.items.dashboard,
-            this.items.locales,
-            this.items.users,
-            this.items.user_groups
+            items.dashboard,
+            items.locales,
+            items.users,
+            items.user_groups
         ];
     }
 
     protected getUserSidebar(): NbMenuItem[]
     {
+        const items = this.defineItems();
+
         return [
-            this.items.dashboard,
-            this.items.locales,
-            this.items.user_groups
+            items.dashboard,
+            items.locales,
+            items.user_groups
         ];
     }
 
-    private items: { [key: string]: NbMenuItem } = {
-        'dashboard': {
-            title: 'Dashboard',
-            expanded: false,
-            icon: 'fas fa-tachometer-alt',
-            link: '/dashboard'
-        },
-        'locales': {
-            title: 'Locales',
-            expanded: false,
-            icon: 'fas fa-language',
-            children: [
-                {
-                    title: 'All Locales',
-                    link: '/locales'
-                }
-            ]
-        },
-        'users': {
-            title: 'Users',
-            expanded: false,
-            icon: 'fas fa-user',
-            children: [
-                {
-                    title: 'All Users',
-                    link: '/users'
-                },
-                {
-                    title: 'Add User',
-                    link: '/users/add'
-                }
-            ]
-        },
-        'user_groups': {
-            title: 'User Groups',
-            expanded: false,
-            icon: 'fas fa-users',
-            children: [
-                {
-                    title: 'All User groups',
-                    link: '/user-groups'
-                }
-            ]
-        }
+    private defineItems(): { [key: string]: NbMenuItem }
+    {
+        return {
+            'dashboard': {
+                title: this.translator.get('sidebar.dashboard.title'),
+                expanded: false,
+                icon: 'fas fa-tachometer-alt',
+                link: '/dashboard'
+            },
+            'locales': {
+                title: this.translator.get('sidebar.locales.title'),
+                expanded: false,
+                icon: 'fas fa-language',
+                children: [
+                    {
+                        title: this.translator.get('sidebar.locales.list'),
+                        link: '/locales'
+                    }
+                ]
+            },
+            'users': {
+                title: this.translator.get('sidebar.users.title'),
+                expanded: false,
+                icon: 'fas fa-user',
+                children: [
+                    {
+                        title: this.translator.get('sidebar.users.list'),
+                        link: '/users'
+                    },
+                    {
+                        title: this.translator.get('sidebar.users.details'),
+                        link: '/users/add'
+                    }
+                ]
+            },
+            'user_groups': {
+                title: this.translator.get('sidebar.user_groups.title'),
+                expanded: false,
+                icon: 'fas fa-users',
+                children: [
+                    {
+                        title: this.translator.get('sidebar.user_groups.list'),
+                        link: '/user-groups'
+                    }
+                ]
+            }
+        };
     }
 }

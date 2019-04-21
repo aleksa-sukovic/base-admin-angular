@@ -3,6 +3,8 @@ import { NbMenuItem, NbSidebarService } from '@nebular/theme';
 import {SidebarMenuService} from '../../../@core/services/sidebar.menu.service';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/@modules/auth/services/auth.service';
+import { LocaleService } from 'src/app/@modules/locale/services/locale.service';
+import { TranslatorService } from 'src/app/@modules/locale/services/translator.service';
 
 @Component({
   selector: 'sidebar',
@@ -12,12 +14,17 @@ import { AuthService } from 'src/app/@modules/auth/services/auth.service';
 export class SidebarComponent implements OnInit, OnDestroy
 {
     protected items: NbMenuItem[];
-    protected subscription: Subscription;
+    protected authSubscription: Subscription;
+    protected translatorSubscription: Subscription;
     protected isLoggedIn: boolean;
 
-    constructor(private sidebarService: NbSidebarService, private sidebarMenuService: SidebarMenuService)
+    constructor(private sidebarService: NbSidebarService, private sidebarMenuService: SidebarMenuService, translator: TranslatorService)
     {
         this.items = sidebarMenuService.getItems();
+
+        this.translatorSubscription = translator.refresh.subscribe(() => {
+            this.items = this.sidebarMenuService.getItems();
+        });
     }
 
     public toggle(): void
@@ -27,7 +34,7 @@ export class SidebarComponent implements OnInit, OnDestroy
 
     ngOnInit(): void
     {
-        this.subscription = AuthService.isLoggedInObservable.subscribe(state => {
+        this.authSubscription = AuthService.isLoggedInObservable.subscribe(state => {
             this.isLoggedIn = state;
 
             if (this.isLoggedIn) {
@@ -38,6 +45,7 @@ export class SidebarComponent implements OnInit, OnDestroy
 
     ngOnDestroy(): void
     {
-        this.subscription.unsubscribe();
+        this.authSubscription.unsubscribe();
+        this.translatorSubscription.unsubscribe();
     }
 }
