@@ -3,7 +3,6 @@ import { ModuleWithProviders } from '@angular/compiler/src/core';
 import { LocaleService } from '../@modules/locale/services/locale.service';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { ApiService } from './services/api.service';
-import { LocaleInitializer } from '../@modules/locale/initializers/locale-initializer.service';
 import { SidebarMenuService } from './services/sidebar.menu.service';
 import { ThemeModule } from '../@theme/theme.module';
 import { NbLayoutModule } from '@nebular/theme';

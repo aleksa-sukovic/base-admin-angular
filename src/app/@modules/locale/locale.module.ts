@@ -7,6 +7,8 @@ import { ThemeModule } from 'src/app/@theme/theme.module';
 import { SharedModule } from 'src/app/@shared/shared.module';
 import { LocaleResolver } from './resolvers/locale.resolver';
 import { LocaleInitializer } from './initializers/locale-initializer.service';
+import { TranslatorService } from './services/translator.service';
+import { TranslatorPipe } from './pipes/translator.pipe';
 
 export function initializeLocales(initializer: LocaleInitializer)
 {
@@ -16,6 +18,7 @@ export function initializeLocales(initializer: LocaleInitializer)
 @NgModule({
     declarations: [
         LocaleListComponent,
+        TranslatorPipe
     ],
     imports: [
         RouterModule,
@@ -29,7 +32,7 @@ export function initializeLocales(initializer: LocaleInitializer)
         LocaleResolver
     ],
     exports: [
-        //
+        TranslatorPipe
     ]
 })
 export class LocaleModule
@@ -40,6 +43,7 @@ export class LocaleModule
             ngModule: LocaleModule,
             providers: [
                 LocaleService,
+                TranslatorService,
                 {
                     provide: APP_INITIALIZER,
                     useFactory: initializeLocales,

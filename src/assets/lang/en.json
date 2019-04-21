@@ -1,0 +1,10 @@
+{
+    "sidebar.dashboard.title": "Dashboard",
+    "sidebar.locales.title": "Locales",
+    "sidebar.locales.list": "All Locales",
+    "sidebar.users.title": "Users",
+    "sidebar.users.list": "All users",
+    "sidebar.users.details": "Add user",
+    "sidebar.user_groups.title": "User groups",
+    "sidebar.user_groups.list": "All user groups"
+}

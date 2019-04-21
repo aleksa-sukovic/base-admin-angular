@@ -1,0 +1,10 @@
+{
+    "sidebar.dashboard.title": "Kontrolna Tabla",
+    "sidebar.locales.title": "Jezici",
+    "sidebar.locales.list": "Svi jezici",
+    "sidebar.users.title": "Korisnici",
+    "sidebar.users.list": "Svi korisnici",
+    "sidebar.users.details": "Dodaj korisnika",
+    "sidebar.user_groups.title": "Korisnicke grupe",
+    "sidebar.user_groups.list": "Sve korisnicke grupe"
+}
