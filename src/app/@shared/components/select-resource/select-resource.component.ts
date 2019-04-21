@@ -26,6 +26,7 @@ export abstract class SelectResourceComponent<Model extends Resource<Model>, Mod
 
             if (this.selectedId) {
                 this.selected = this.data.find(item => item.id == this.selectedId);
+                this.onResourceSelected();
             }
         });
     }
