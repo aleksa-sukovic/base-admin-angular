@@ -2,12 +2,11 @@
 
     <nb-layout-header fixed>
         <layout-header
-            (toggleSidebar)="onToggleSidebar()"
-            (languageChange)="onLanguageChange($event)">
+            (toggleSidebar)="onToggleSidebar()">
         </layout-header>
     </nb-layout-header>
 
-    <nb-sidebar>
+    <nb-sidebar *ngIf="isLoggedIn">
         <sidebar></sidebar>
     </nb-sidebar>
 
