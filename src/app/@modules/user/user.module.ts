@@ -8,6 +8,8 @@ import { UserListComponent } from './components/list/user-list.component';
 import { UserDetailsComponent } from './components/details/user-details.component';
 import { UserResolver } from './resolvers/user.resolver';
 import { UserGroupModule } from '../user-group/user-group.module';
+import { LocaleModule } from '../locale/locale.module';
+import { CoreModule } from 'src/app/@core/core.module';
 
 @NgModule({
     declarations: [
@@ -20,7 +22,9 @@ import { UserGroupModule } from '../user-group/user-group.module';
         ThemeModule,
         SharedModule,
         RouterModule,
-        UserGroupModule
+        UserGroupModule,
+        LocaleModule,
+        CoreModule
     ],
     providers: [
         UserService,

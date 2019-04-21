@@ -4,6 +4,7 @@ import { NbToastrService } from '@nebular/theme';
 import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { RouterStateService } from 'src/app/@core/services/router.state.service';
+import { TranslatorService } from 'src/app/@core/services/translator.service';
 
 @Component({
   selector: 'activate-user',
@@ -16,7 +17,13 @@ export class ActivateUserComponent
     protected activateCode: string;
     protected semaphores: any;
 
-    constructor(formBuilder: FormBuilder, activatedRoute: ActivatedRoute, protected toastService: NbToastrService, protected authService: AuthService, protected routerState: RouterStateService)
+    constructor(
+        formBuilder: FormBuilder,
+        activatedRoute: ActivatedRoute,
+        protected toastService: NbToastrService,
+        protected authService: AuthService,
+        protected routerState: RouterStateService,
+    )
     {
         this.form = formBuilder.group({
             password: ['', Validators.required],
@@ -36,27 +43,27 @@ export class ActivateUserComponent
         this.semaphores.loading = true;
 
         if (this.form.invalid) {
-            this.toastService.danger('Please correctly fill in all of the fields!', 'Validation exception');
+            this.toastService.danger(TranslatorService.get('validation.fill-all-fields'), TranslatorService.get('validation.title'));
 
             return;
         }
 
         if (this.form.get('password').value !== this.form.get('password_confirmation').value) {
-            this.toastService.danger('Passwords do not match!', 'Validation exception');
+            this.toastService.danger(TranslatorService.get('validation.password-mismatch'), TranslatorService.get('validation.title'));
 
             return;
         }
 
         this.authService.activate(this.activateCode, this.form.get('password').value, this.form.get('password_confirmation').value).subscribe(value => {
             if (value.activated) {
-                this.toastService.success('Success', 'Your account has been activated!');
+                this.toastService.success(TranslatorService.get('messages.success'), TranslatorService.get('auth.account-activated'));
 
                 this.routerState.navigate(['login']);
 
                 return;
             }
 
-            this.toastService.danger('Failure', 'Please try again');
-        }, () => this.toastService.danger('Failure', 'Server error. Please try again.'));
+            this.toastService.danger(TranslatorService.get('global.failure'), TranslatorService.get('messages.try-again'));
+        }, () => this.toastService.danger(TranslatorService.get('global.failure'), TranslatorService.get('messages.server-error')));
     }
 }

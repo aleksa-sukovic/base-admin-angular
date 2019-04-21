@@ -9,11 +9,11 @@ import { DeleteResourceDialogComponent } from './components/delete-resource-dial
 import { DeleteResourceDialogTriggerDirective } from './directives/triggers/delete-resource-dialog-trigger.directive';
 import { LanguagePickerComponent } from './components/language-picker/language-picker.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-import { ResourceDetailsHeaderComponent } from './components/resource-details-header/resource-details-header.component';
 import { PerPageSelectorComponent } from './components/per-page-selector/per-page-selector.component';
 import { ResourceEditActions } from './components/resource-edit-action/resource-edit-actions.component';
 import { LayoutHeaderComponent } from './components/layout-header/layout-header.component';
 import { ValidationErrorsComponent } from './components/validation-errors/validation-errors.component';
+import { CoreModule } from '../@core/core.module';
 
 @NgModule({
     declarations: [
@@ -25,7 +25,6 @@ import { ValidationErrorsComponent } from './components/validation-errors/valida
         DeleteResourceDialogTriggerDirective,
         LanguagePickerComponent,
         SidebarComponent,
-        ResourceDetailsHeaderComponent,
         PerPageSelectorComponent,
         ResourceEditActions,
         LayoutHeaderComponent,
@@ -37,6 +36,7 @@ import { ValidationErrorsComponent } from './components/validation-errors/valida
     imports: [
         ThemeModule,
         RouterModule,
+        CoreModule
     ],
     providers: [
         //
@@ -50,7 +50,6 @@ import { ValidationErrorsComponent } from './components/validation-errors/valida
         DeleteResourceDialogTriggerDirective,
         LanguagePickerComponent,
         SidebarComponent,
-        ResourceDetailsHeaderComponent,
         PerPageSelectorComponent,
         ResourceEditActions,
         LayoutHeaderComponent,

@@ -3,6 +3,7 @@ import {SortableTableHeaderDirective, SortEvent} from '../../directives/tables/s
 import {Resource} from 'src/app/@core/models/resource.model';
 import {ResourceService} from 'src/app/@core/services/resource.service';
 import {ResourceBaseComponent} from './resource-base.component';
+import { TranslatorService } from 'src/app/@core/services/translator.service';
 
 @Injectable()
 export abstract class ResourceList<Model extends Resource<Model>, ModelService extends ResourceService<Model>>
@@ -84,7 +85,7 @@ extends ResourceBaseComponent<Model, ModelService>
             this.routerState.resetQueryParams();
             this.routerState.navigate([this.url]);
 
-            this.showToast('Success', 'Item deleted successfully !');
+            this.showToast(TranslatorService.get('messages.success'), TranslatorService.get('messages.item-delete-success'));
         });
     }
 

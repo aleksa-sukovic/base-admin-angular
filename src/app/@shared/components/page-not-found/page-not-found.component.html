@@ -4,10 +4,10 @@
             <nb-card>
                 <nb-card-body>
                     <div class="text-center">
-                        <h2 class="title">Page not found</h2>
-                        <p>The page you were looking for was not found!</p>
+                        <h2 class="title">{{ 'page-not-found.title' | translate }}</h2>
+                        <p>{{ 'page-not-found.description' | translate }}!</p>
                         <button class="btn btn-primary">
-                            <a routerLink="/dashboard">Go to dashboard</a>
+                            <a routerLink="/dashboard">{{ 'page-not-found.cta' | translate }}</a>
                         </button>
                     </div>
                 </nb-card-body>

@@ -6,6 +6,7 @@ import { UserGroupService } from './services/user-group.service';
 import { UserGroupRoute } from './user-group.routing';
 import { UserGroupListComponent } from './components/list/user-group-list.component';
 import { SelectUserGroupComponent } from './components/select-user-group/select-user-group.component';
+import { CoreModule } from 'src/app/@core/core.module';
 
 @NgModule({
     declarations: [
@@ -18,6 +19,7 @@ import { SelectUserGroupComponent } from './components/select-user-group/select-
         ThemeModule,
         SharedModule,
         RouterModule,
+        CoreModule
     ],
     providers: [
         UserGroupService,

@@ -3,6 +3,7 @@ import { DashboardRoute } from './dashboard.routing';
 import { Dashboard } from './components/dashboard/dashboard.component';
 import { ThemeModule } from 'src/app/@theme/theme.module';
 import { LocaleModule } from '../locale/locale.module';
+import { CoreModule } from 'src/app/@core/core.module';
 
 @NgModule({
     declarations: [
@@ -11,7 +12,8 @@ import { LocaleModule } from '../locale/locale.module';
     imports: [
         DashboardRoute,
         ThemeModule,
-        LocaleModule
+        LocaleModule,
+        CoreModule
     ],
     providers: []
 })

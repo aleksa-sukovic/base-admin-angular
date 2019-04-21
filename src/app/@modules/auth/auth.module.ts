@@ -10,6 +10,8 @@ import { MissingPermissionPageComponent } from './components/missing-permissions
 import { ActivateUserComponent } from './components/activate-user/activate-user.component';
 import { ResetCredentialsComponent } from './components/reset-credentials/reset-credentials.component';
 import { SharedModule } from 'src/app/@shared/shared.module';
+import { LocaleModule } from '../locale/locale.module';
+import { CoreModule } from 'src/app/@core/core.module';
 
 export function initializeAuth(initializer: AuthInitializer)
 {
@@ -26,7 +28,9 @@ export function initializeAuth(initializer: AuthInitializer)
     imports: [
         ThemeModule,
         AuthRoute,
-        SharedModule
+        SharedModule,
+        LocaleModule,
+        CoreModule
     ],
     exports: [
         LoginComponent,

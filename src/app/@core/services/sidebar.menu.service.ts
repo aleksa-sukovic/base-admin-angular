@@ -1,17 +1,11 @@
 import { Injectable } from '@angular/core';
 import { NbMenuItem } from '@nebular/theme';
 import { AuthService } from 'src/app/@modules/auth/services/auth.service';
-import { TranslatorService } from 'src/app/@modules/locale/services/translator.service';
+import { TranslatorService } from 'src/app/@core/services/translator.service';
 
 @Injectable()
 export class SidebarMenuService
 {
-
-    constructor(private translator: TranslatorService)
-    {
-        //
-    }
-
     public getItems(): NbMenuItem[]
     {
         if (AuthService.isLoggedIn() && (AuthService.getUser().isSuperAdmin() || AuthService.getUser().isAdmin())) {
@@ -48,44 +42,44 @@ export class SidebarMenuService
     {
         return {
             'dashboard': {
-                title: this.translator.get('sidebar.dashboard.title'),
+                title: TranslatorService.get('sidebar.dashboard.title'),
                 expanded: false,
                 icon: 'fas fa-tachometer-alt',
                 link: '/dashboard'
             },
             'locales': {
-                title: this.translator.get('sidebar.locales.title'),
+                title: TranslatorService.get('sidebar.locales.title'),
                 expanded: false,
                 icon: 'fas fa-language',
                 children: [
                     {
-                        title: this.translator.get('sidebar.locales.list'),
+                        title: TranslatorService.get('sidebar.locales.list'),
                         link: '/locales'
                     }
                 ]
             },
             'users': {
-                title: this.translator.get('sidebar.users.title'),
+                title: TranslatorService.get('sidebar.users.title'),
                 expanded: false,
                 icon: 'fas fa-user',
                 children: [
                     {
-                        title: this.translator.get('sidebar.users.list'),
+                        title: TranslatorService.get('sidebar.users.list'),
                         link: '/users'
                     },
                     {
-                        title: this.translator.get('sidebar.users.details'),
+                        title: TranslatorService.get('sidebar.users.details'),
                         link: '/users/add'
                     }
                 ]
             },
             'user_groups': {
-                title: this.translator.get('sidebar.user_groups.title'),
+                title: TranslatorService.get('sidebar.user_groups.title'),
                 expanded: false,
                 icon: 'fas fa-users',
                 children: [
                     {
-                        title: this.translator.get('sidebar.user_groups.list'),
+                        title: TranslatorService.get('sidebar.user_groups.list'),
                         link: '/user-groups'
                     }
                 ]

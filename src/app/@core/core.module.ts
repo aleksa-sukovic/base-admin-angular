@@ -8,10 +8,12 @@ import { ThemeModule } from '../@theme/theme.module';
 import { NbLayoutModule } from '@nebular/theme';
 import { RouterStateService } from './services/router.state.service';
 import {LocaleInterceptor} from './interceptors/locale.interceptor';
+import { TranslatorService } from './services/translator.service';
+import {TranslatorPipe} from './pipes/translator.pipe';
 
 @NgModule({
     declarations: [
-        //
+        TranslatorPipe
     ],
     imports: [
         HttpClientModule,
@@ -19,10 +21,10 @@ import {LocaleInterceptor} from './interceptors/locale.interceptor';
         NbLayoutModule
     ],
     providers: [
-        //
+        TranslatorService,
     ],
     exports: [
-        //
+        TranslatorPipe
     ]
 })
 export class CoreModule
@@ -43,6 +45,7 @@ export class CoreModule
                 ApiService,
                 SidebarMenuService,
                 RouterStateService,
+                TranslatorService,
                 {
                     provide: HTTP_INTERCEPTORS,
                     useClass: LocaleInterceptor,

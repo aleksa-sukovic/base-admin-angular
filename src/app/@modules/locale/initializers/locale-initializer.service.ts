@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { LocaleService } from '../services/locale.service';
-import { TranslatorService } from '../services/translator.service';
+import { TranslatorService } from '../../../@core/services/translator.service';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root'
 })
 export class LocaleInitializer
 {
-    constructor(private localeService: LocaleService, private translatorService: TranslatorService)
+    constructor(private localeService: LocaleService, private http: HttpClient)
     {
         //
     }
@@ -25,7 +26,7 @@ export class LocaleInitializer
 
     protected initTranslator(resolve: any)
     {
-        this.translatorService.init(LocaleService.current).then(() => {
+        TranslatorService.init(LocaleService.current, this.http).then(() => {
             resolve();
         });
     }

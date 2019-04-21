@@ -14,6 +14,6 @@ export class TranslatorPipe implements PipeTransform
 
     public transform(key: any, ...args: any[])
     {
-        return this.translator.get(key);
+        return TranslatorService.get(key);
     }
 }

@@ -1,7 +1,7 @@
 <form [formGroup]="form" (submit)="onSubmit()">
     <nb-card>
         <nb-card-header>
-            Password
+            {{ 'global.password' | translate }}
         </nb-card-header>
         <nb-card-body>
             <div class="row">
@@ -37,7 +37,7 @@
             <div class="row">
                 <div class="col-sm-12 text-center">
                     <button [disabled]="semaphores.loading" type="submit" class="btn btn-primary">
-                        Save
+                        {{ 'global.save' | translate }}
                     </button>
                 </div>
             </div>

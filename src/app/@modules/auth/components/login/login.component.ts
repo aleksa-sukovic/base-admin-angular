@@ -2,6 +2,7 @@ import { Component, Output, Input, EventEmitter, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { RouterStateService } from 'src/app/@core/services/router.state.service';
 import { NbToastrService } from '@nebular/theme';
+import { TranslatorService } from 'src/app/@core/services/translator.service';
 
 @Component({
     selector: 'login',
@@ -34,7 +35,7 @@ export class LoginComponent
                 return;
             }
 
-            this.toastService.danger('Please check your input.', response.message);
+            this.toastService.danger(TranslatorService.get('messages.check-input'), response.message);
             this.semaphores.loading = false;
         });
     }

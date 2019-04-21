@@ -1,7 +1,7 @@
 <nb-card>
     <nb-card-header>
         <button class="btn btn-primary btn-xsmall clickable" nbbutton size="xsmall" [routerLink]="['add']">
-            Add new
+            {{ 'resource.list.add-new' | translate }}
         </button>
     </nb-card-header>
     <nb-card-body>
@@ -13,8 +13,8 @@
             <thead>
                 <tr>
                     <th scope="col" sortable="id" (sort)="onSort($event)">ID</th>
-                    <th scope="col" sortable="name" (sort)="onSort($event)">Name</th>
-                    <th scope="col" sortable="code" (sort)="onSort($event)">Code</th>
+                    <th scope="col" sortable="name" (sort)="onSort($event)">{{ 'resource.name' | translate }}</th>
+                    <th scope="col" sortable="code" (sort)="onSort($event)">{{ 'resource.code' | translate }}</th>
                 </tr>
             </thead>
             <tbody *ngIf="data">
@@ -34,13 +34,13 @@
         <!-- Loader -->
         <div class="text-center" *ngIf="semaphores.loading">
             <div class="spinner-border text-secondary" role="status">
-                <span class="sr-only">Loading...</span>
+                <span class="sr-only">{{ 'global.loading' | translate }}...</span>
             </div>
         </div>
 
         <!-- No results -->
         <div class="lead text-center p-4"  *ngIf="semaphores.noData">
-            We're sorry there are no results!
+            {{ 'resource.list.no-results' | translate }}
         </div>
     </nb-card-body>
 </nb-card>

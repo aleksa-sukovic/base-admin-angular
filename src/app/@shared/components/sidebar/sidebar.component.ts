@@ -4,7 +4,7 @@ import {SidebarMenuService} from '../../../@core/services/sidebar.menu.service';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/@modules/auth/services/auth.service';
 import { LocaleService } from 'src/app/@modules/locale/services/locale.service';
-import { TranslatorService } from 'src/app/@modules/locale/services/translator.service';
+import { TranslatorService } from 'src/app/@core/services/translator.service';
 
 @Component({
   selector: 'sidebar',
@@ -18,13 +18,9 @@ export class SidebarComponent implements OnInit, OnDestroy
     protected translatorSubscription: Subscription;
     protected isLoggedIn: boolean;
 
-    constructor(private sidebarService: NbSidebarService, private sidebarMenuService: SidebarMenuService, translator: TranslatorService)
+    constructor(private sidebarService: NbSidebarService, private sidebarMenuService: SidebarMenuService)
     {
-        this.items = sidebarMenuService.getItems();
-
-        this.translatorSubscription = translator.refresh.subscribe(() => {
-            this.items = this.sidebarMenuService.getItems();
-        });
+        //
     }
 
     public toggle(): void
@@ -34,6 +30,10 @@ export class SidebarComponent implements OnInit, OnDestroy
 
     ngOnInit(): void
     {
+        this.translatorSubscription = TranslatorService.refresh.subscribe(() => {
+            this.items = this.sidebarMenuService.getItems();
+        });
+
         this.authSubscription = AuthService.isLoggedInObservable.subscribe(state => {
             this.isLoggedIn = state;
 

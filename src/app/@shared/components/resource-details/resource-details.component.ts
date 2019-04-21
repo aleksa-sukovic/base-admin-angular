@@ -9,6 +9,7 @@ import { NbToastrService } from '@nebular/theme';
 import { ResourceService } from 'src/app/@core/services/resource.service';
 import { RouterStateService } from 'src/app/@core/services/router.state.service';
 import { Subscription } from 'rxjs';
+import { TranslatorService } from 'src/app/@core/services/translator.service';
 
 @Injectable()
 export abstract class ResourceDetailsComponent<Model extends Resource<Model>, ModelService extends ResourceService<Model>> implements OnInit
@@ -92,7 +93,7 @@ export abstract class ResourceDetailsComponent<Model extends Resource<Model>, Mo
         this.semaphores.formSubmitted = true;
 
         if (this.form.invalid) {
-            this.showToast('Validation error', 'Please correctly fill in all of the fields!', NbToastStatus.DANGER);
+            this.showToast(TranslatorService.get('validation.title'), TranslatorService.get('validation.fill-all-fields'), NbToastStatus.DANGER);
 
             return;
         }
@@ -136,7 +137,7 @@ export abstract class ResourceDetailsComponent<Model extends Resource<Model>, Mo
         this.semaphores.loading = false;
         this.semaphores.formSubmitted = false;
         this.errors = error.error.errors;
-        this.showToast('Validation errors', 'Please review and fix shown errors', NbToastStatus.DANGER);
+        this.showToast(TranslatorService.get('validation.title'), TranslatorService.get('validation.fix-errors'), NbToastStatus.DANGER);
     }
 
     protected deleteResource(): void

@@ -1,9 +1,15 @@
 import { Resource } from 'src/app/@core/models/resource.model';
+import { TranslatorService } from '../../../@core/services/translator.service';
 
 export class UserGroup extends Resource<UserGroup>
 {
     public id: number;
     public name: string;
+
+    constructor(data?: any)
+    {
+        super(data);
+    }
 
     protected initialize(data?: any): void
     {
@@ -14,10 +20,10 @@ export class UserGroup extends Resource<UserGroup>
     public getDisplayName()
     {
         switch(this.name) {
-            case 'super-admin': return 'Super Admin';
-            case 'admin': return 'Admin';
-            case 'editor': return 'Editor';
-            case 'user': return 'User';
+            case 'super-admin': return TranslatorService.get('groups.super-admin');
+            case 'admin': return TranslatorService.get('groups.admin');
+            case 'editor': return TranslatorService.get('groups.editor');
+            case 'user': return TranslatorService.get('groups.user');
         }
     }
 }

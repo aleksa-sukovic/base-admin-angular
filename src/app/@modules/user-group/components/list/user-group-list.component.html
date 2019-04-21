@@ -1,6 +1,6 @@
 <nb-card>
     <nb-card-header>
-        All user groups
+        {{ 'groups.list.title' | translate }}
     </nb-card-header>
     <nb-card-body>
         <!-- Controls -->
@@ -11,7 +11,7 @@
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Group Name</th>
+                    <th scope="col">{{ 'groups.title' | translate }}</th>
                 </tr>
             </thead>
             <tbody *ngIf="data">
@@ -30,13 +30,13 @@
         <!-- Loader -->
         <div class="text-center" *ngIf="semaphores.loading">
             <div class="spinner-border text-secondary" role="status">
-                <span class="sr-only">Loading...</span>
+                <span class="sr-only">{{ 'global.loading' | translate }}...</span>
             </div>
         </div>
 
         <!-- No results -->
         <div class="lead text-center p-4"  *ngIf="semaphores.noData">
-            We're sorry there are no results!
+            {{ 'resource.list.no-results' | translate }}
         </div>
     </nb-card-body>
 </nb-card>
