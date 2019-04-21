@@ -13,6 +13,7 @@ import { ResourceDetailsHeaderComponent } from './components/resource-details-he
 import { PerPageSelectorComponent } from './components/per-page-selector/per-page-selector.component';
 import { ResourceEditActions } from './components/resource-edit-action/resource-edit-actions.component';
 import { LayoutHeaderComponent } from './components/layout-header/layout-header.component';
+import { ValidationErrorsComponent } from './components/validation-errors/validation-errors.component';
 
 @NgModule({
     declarations: [
@@ -27,7 +28,8 @@ import { LayoutHeaderComponent } from './components/layout-header/layout-header.
         ResourceDetailsHeaderComponent,
         PerPageSelectorComponent,
         ResourceEditActions,
-        LayoutHeaderComponent
+        LayoutHeaderComponent,
+        ValidationErrorsComponent
     ],
     entryComponents: [
         DeleteResourceDialogComponent
@@ -51,7 +53,8 @@ import { LayoutHeaderComponent } from './components/layout-header/layout-header.
         ResourceDetailsHeaderComponent,
         PerPageSelectorComponent,
         ResourceEditActions,
-        LayoutHeaderComponent
+        LayoutHeaderComponent,
+        ValidationErrorsComponent
     ]
 })
 export class SharedModule

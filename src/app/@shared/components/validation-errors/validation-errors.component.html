@@ -1,0 +1,15 @@
+<nb-card class="validation-errors">
+    <nb-card-header>
+        Validation errors
+    </nb-card-header>
+    <nb-card-body class="pb-0">
+        <nb-list>
+            <nb-list-item class="border-bottom-0 border-top-0" *ngFor="let error of errors | keyvalue">
+                <p>{{ error.key }}</p>
+                <ul>
+                    <li *ngFor="let item of error.value">{{ item }}</li>
+                </ul>
+            </nb-list-item>
+        </nb-list>
+    </nb-card-body>
+</nb-card>

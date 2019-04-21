@@ -2,10 +2,13 @@
     <nb-card>
         <nb-card-header>
             <div class="d-flex flex-row justify-content-between">
-                <p class="lead d-inline">Locale Details</p>
-                <resource-edit-actions [loading]="semaphores.loading" [deleteTitle]="resource.full_name"
-                [translationDeleteTitle]="resource.full_name" [resource]="resource" (save)="submit()"
-                (delete)="deleteResource()"></resource-edit-actions>
+                <p class="lead d-inline">User Details</p>
+                <resource-edit-actions
+                    [loading]="semaphores.loading"
+                    [deleteTitle]="resource.full_name"
+                    [resource]="resource"
+                    (save)="submit()"
+                    (delete)="deleteResource()"></resource-edit-actions>
             </div>
         </nb-card-header>
         <nb-card-body>
@@ -88,7 +91,7 @@
                                 Group
                             </div>
                             <div class="form-group col-sm-9">
-                                <select-user-group [selectedId]="resource.group_id" (onSelect)="onGroupSelected($event)"></select-user-group>
+                                <select-user-group [selectedId]="resource.group_id || 1" (onSelect)="onGroupSelected($event)"></select-user-group>
                             </div>
                         </div>
                     </div>
@@ -98,3 +101,5 @@
         </nb-card-body>
     </nb-card>
 </form>
+
+<validation-errors [errors]="errors" *ngIf="semaphores.hasErrors && !semaphores.loading"></validation-errors>

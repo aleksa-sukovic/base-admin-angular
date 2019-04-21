@@ -25,6 +25,7 @@ export abstract class ResourceDetailsComponent<Model extends Resource<Model>, Mo
 
     protected resource: Model;
     protected resourceService: ModelService;
+    protected errors: any;
 
     protected fillable: Attribute[];
 
@@ -44,7 +45,8 @@ export abstract class ResourceDetailsComponent<Model extends Resource<Model>, Mo
 
         this.semaphores = {
             formSubmitted: false,
-            loading: false
+            loading: false,
+            hasErrors: false
         };
     }
 
@@ -94,7 +96,7 @@ export abstract class ResourceDetailsComponent<Model extends Resource<Model>, Mo
 
             return;
         }
-
+console.log(this.resource);
         this.beforeSave();
         this.save();
     }
@@ -113,18 +115,27 @@ export abstract class ResourceDetailsComponent<Model extends Resource<Model>, Mo
 
             this.semaphores.loading = false;
             this.semaphores.formSubmitted = false;
+            this.semaphores.hasErrors = false;
 
             if (!this.resource.id) {
                 this.routerState.navigate([this.baseUrl, saved.getItem().id]);
             } else {
                 this.routerState.refresh();
             }
-        });
+        }, error => this.onSaveError(error));
     }
 
     protected afterSave(saved: Model): void
     {
         //
+    }
+
+    protected onSaveError(error: any): void
+    {
+        this.semaphores.hasErrors = true;
+        this.semaphores.loading = false;
+        this.semaphores.formSubmitted = false;
+        this.showToast('Validation errors', 'Please review and fix shown errors', NbToastStatus.DANGER);
     }
 
     protected deleteResource(): void

@@ -64,13 +64,23 @@ export class UserDetailsComponent extends ResourceDetailsComponent<User, UserSer
             {
                 name: 'group',
                 validator: Validators.required,
-                apply: (field: AbstractControl) => this.resource.group_id = field.value
+                apply: (field: AbstractControl) => {
+                    this.resource.group_id = field.value.id;
+                    this.resource.group = field.value;
+                }
             }
         ];
     }
 
+    protected onSaveError(error: any): void
+    {
+        super.onSaveError(error);
+
+        this.errors = error.error.errors;
+    }
+
     protected onGroupSelected(group: any)
     {
-        this.form.controls['group'].setValue(group.id);
+        this.form.controls['group'].setValue(group);
     }
 }
