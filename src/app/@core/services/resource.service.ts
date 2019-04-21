@@ -1,6 +1,6 @@
 import { ApiService } from './api.service';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 import { Resource } from '../models/resource.model';
 import { Injector, Injectable } from '@angular/core';
 import { CollectionApiResponse } from '../interfaces/collection.api.response';

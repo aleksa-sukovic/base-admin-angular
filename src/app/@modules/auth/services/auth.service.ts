@@ -1,7 +1,8 @@
 import { ApiService } from '../../../@core/services/api.service';
 import { Injectable } from '@angular/core';
 import { User } from 'src/app/@modules/user/models/user.model';
-import { Observer, Observable, BehaviorSubject } from 'rxjs';
+import { Observer, Observable, BehaviorSubject, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -50,6 +51,15 @@ export class AuthService
         } catch (error) {
             return Promise.resolve({ success: false, message: error.error.message });
         }
+    }
+
+    public activate(code: string, password: string, password_confirmation: string): Observable<{ [key: string]: boolean }>
+    {
+        return this.apiService.post('auth/' + code + '/activate', { password, password_confirmation }).pipe(
+            map(response => {
+                return { activated: response.status == 200 };
+            })
+        );
     }
 
     public logout(): void

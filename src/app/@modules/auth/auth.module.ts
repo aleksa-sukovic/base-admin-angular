@@ -7,6 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { ThemeModule } from 'src/app/@theme/theme.module';
 import { AuthRoute } from './auth.routing';
 import { MissingPermissionPageComponent } from './components/missing-permissions-page/missing-permissions-page.component';
+import { ActivateUserComponent } from './components/activate-user/activate-user.component';
 
 export function initializeAuth(initializer: AuthInitializer)
 {
@@ -16,14 +17,16 @@ export function initializeAuth(initializer: AuthInitializer)
 @NgModule({
     declarations: [
         LoginComponent,
-        MissingPermissionPageComponent
+        MissingPermissionPageComponent,
+        ActivateUserComponent
     ],
     imports: [
         ThemeModule,
         AuthRoute
     ],
     exports: [
-        LoginComponent
+        LoginComponent,
+        ActivateUserComponent
     ],
     providers: [
         //
