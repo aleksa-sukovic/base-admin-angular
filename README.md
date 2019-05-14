@@ -1,27 +1,31 @@
-# BaseAdmin
+# Base Admin
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.4.
+'Base Admin' is project aimed to provide solid starting point for any project that requires CMS (content management system)
+This project was done as an assignment task for my "Software Engineering" college course.
 
-## Development server
+## Features
+****
+Main idea was to explore principles of modeling software to create an abstract admin panel which could serve as starting point for future projects.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+This is web project. It is separated into 2 main parts:
+1. Backend API
+2. Frontend Admin Panel (this repo)
 
-## Code scaffolding
+Why separate projects into two distinct parts ? Many reasons:
+* Both parts can live on separate servers
+* Easier to maintain
+* Not bound to specifici techologies (API implementation can change, as long as its endpoints remain the same)
+* Ability to use API for other clients other that admin panel (websites, mobile apps)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+This project was good example for showcasing commong modeling techniques, especially those used in world of web apps. 
 
-## Build
+## What have I learned
+* A lot of software modeling techniques (more than I can list)
+* Angular framework
+* RxJS
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Where is the API
+API was the most difficult part to build. I tought me a lot, lot more than admin panel project did.
 
-## Running unit tests
+Unfortunately, for now, I have to keep it in private repository since it is a part of another project.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
