@@ -1,0 +1,87 @@
+@import './colors';
+
+/*
+    Table Header Sorting
+*/
+th[sortable].desc, th[sortable].asc
+{
+    padding-left: 35px !important;
+}
+
+th[sortable].desc:before, th[sortable].asc:before
+{
+    font-family: "Font Awesome 5 Free";
+
+    display: block;
+    width: 15px;
+    height: 15px;
+    background-size: 15px;
+
+    float: left;
+    margin-left: -22px;
+}
+
+th[sortable].asc:before
+{
+    content: '\f161';
+}
+
+th[sortable].desc:before
+{
+    content: '\f160';
+}
+
+/*
+    Table Header hover
+*/
+.table-list th
+{
+    background-color: $white !important;
+}
+
+.table-list th[sortable]:hover
+{
+    cursor: pointer;
+    background-color: $tableBg !important;
+}
+
+.table-list tr:hover td
+{
+    background-color: $tableRowHover !important;
+}
+
+.table-list td
+{
+    font-size: 0.9rem !important;
+
+    background-color: $tableBg !important;
+}
+
+.table-list td:hover
+{
+    cursor: pointer;
+}
+
+.table-actions
+{
+    width: 25px !important;
+}
+
+/*
+Pagination
+*/
+.pagination .active a
+{
+    background-color: $accent !important;
+    border-color: $accent !important;
+
+    &:hover {
+        color: $white !important;
+    }
+}
+
+.pagination .disabled a
+{
+    background-color: $tablePaginationDisabledBg !important;
+    color: $tablePaginationDisabledText !important;
+}

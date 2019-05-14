@@ -1,0 +1,109 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <nb-card>
+        <nb-card-header>
+            <div class="d-flex flex-row justify-content-between">
+                <p class="lead d-inline">{{ 'users.details.title' | translate }}</p>
+                <resource-edit-actions
+                [loading]="semaphores.loading"
+                [deleteTitle]="resource.full_name"
+                [resource]="resource"
+                (save)="submit()"
+                (delete)="deleteResource()"></resource-edit-actions>
+            </div>
+        </nb-card-header>
+        <nb-card-body>
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="form-group">
+                        <div class="row full-name-inputs">
+                            <div class="col-sm-3 col-form-label">
+                                {{ 'users.full_name' | translate }}
+                            </div>
+                            <div class="col-sm-9 input-group">
+                                <input formControlName="full_name" nbinput placeholder="{{ 'users.full_name' | translate }}" type="text"
+                                class="input-full-width input-md input-rectangle"
+                                [ngClass]="{ 'input-danger': semaphores.formSubmitted && form.get('full_name').invalid }">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row full-name-inputs">
+                            <div class="col-sm-3 col-form-label">
+                                {{ 'users.email' | translate }}
+                            </div>
+                            <div class="col-sm-9 input-group">
+                                <input formControlName="email" nbinput placeholder="{{ 'users.email' | translate }}" type="email"
+                                class="input-full-width input-md input-rectangle"
+                                [ngClass]="{ 'input-danger': semaphores.formSubmitted && form.get('email').invalid }">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div class="row full-name-inputs">
+                            <div class="col-sm-3 col-form-label">
+                                {{ 'users.birth_date' | translate }}
+                            </div>
+                            <div class="col-sm-9 input-group">
+                                <input
+                                [nbDatepicker]="datepicker"
+                                nbinput class="input-full-width input-md input-rectangle"
+                                formControlName="birth_date"
+                                >
+                                <nb-datepicker #datepicker [date]="resource.birth_date"></nb-datepicker>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div class="row full-name-inputs">
+                            <div class="col-sm-3 col-form-label">
+                                {{ 'users.gender' | translate }}
+                            </div>
+                            <div class="form-group select-form-group mb-0 col-sm-9">
+                                <select formControlName="gender" class="form-control">
+                                    <option value="m">{{ 'gender.male' | translate }}</option>
+                                    <option value="f">{{ 'gender.female' | translate }}</option>
+                                    <option value="o">{{ 'gender.other' | translate }}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group mb-0">
+                        <div class="row full-name-inputs">
+                            <div class="col-sm-3 col-form-label">
+                                {{ 'users.group' | translate }}
+                            </div>
+                            <div class="form-group col-sm-9">
+                                <select-user-group [selectedId]="resource.group_id || 1" (onSelect)="onGroupSelected($event)"></select-user-group>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="credentials-reset text-right mb-2" *ngIf="this.resource.id == loggedInUser.id || loggedInUser.isSuperAdmin()">
+                <p (click)="requestCredentialsReset()" class="text-danger d-inline clickable credentials-reset">{{ 'users.request-credentials-reset' | translate }}</p>
+            </div>
+
+        </nb-card-body>
+    </nb-card>
+</form>
+
+<validation-errors [errors]="errors" *ngIf="semaphores.hasErrors && !semaphores.loading"></validation-errors>

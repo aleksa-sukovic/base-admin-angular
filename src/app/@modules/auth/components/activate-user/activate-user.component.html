@@ -1,0 +1,46 @@
+<form [formGroup]="form" (submit)="onSubmit()">
+    <nb-card>
+        <nb-card-header>
+            {{ 'global.password' | translate }}
+        </nb-card-header>
+        <nb-card-body>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div class="input-group full-name-inputs">
+                            <input
+                                formControlName="password"
+                                nbinput
+                                placeholder="Password"
+                                type="password"
+                                class="input-full-width input-md input-rectangle"
+                                minlength="3"
+                                [ngClass]="{ 'input-danger': semaphores.formSubmitted && form.get('password').invalid }">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div class="input-group full-name-inputs">
+                            <input
+                                formControlName="password_confirmation"
+                                nbinput
+                                placeholder="Password Confirmation"
+                                type="password"
+                                class="input-full-width input-md input-rectangle"
+                                [ngClass]="{ 'input-danger': semaphores.formSubmitted && form.get('password').invalid || semaphores.passwordError }">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 text-center">
+                    <button [disabled]="semaphores.loading" type="submit" class="btn btn-primary">
+                        {{ 'global.save' | translate }}
+                    </button>
+                </div>
+            </div>
+        </nb-card-body>
+    </nb-card>
+</form>

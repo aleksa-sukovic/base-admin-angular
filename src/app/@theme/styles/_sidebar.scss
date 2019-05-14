@@ -1,0 +1,39 @@
+@import './colors';
+
+nb-sidebar
+{
+    margin-top: 2.25rem;
+}
+
+.main-container .scrollable
+{
+    padding-top: 0 !important;
+}
+
+nb-menu .menu-item a
+{
+    border-radius: 0 !important;
+    font-weight: normal !important;
+    font-size: 0.9rem !important;
+}
+
+nb-sidebar .active
+{
+    border: none !important;
+    border-radius: 0 !important;
+    background-color: $accent !important;
+}
+
+nb-sidebar .menu-items .menu-items .active
+{
+    background-color: $white !important;
+    border: solid $accent 2px !important;
+    border-radius: 5px !important;
+}
+
+.resource-sidebar
+{
+    height: 100%;
+    text-align: center;
+    padding: 2rem;
+}

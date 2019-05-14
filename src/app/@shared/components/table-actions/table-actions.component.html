@@ -1,0 +1,16 @@
+<div class="d-flex justify-content-center">
+    <span
+        deleteResource
+        [resource]="resource"
+        [title]="title || ''"
+        (delete)="onDelete.emit()"
+        >
+        <i class="fas fa-trash-alt icon icon-trash"></i>
+    </span>
+
+    <i class="icon"></i>
+
+    <span (click)="onEditEvent($event)">
+        <i class="fas fa-edit icon icon-edit"></i>
+    </span>
+</div>

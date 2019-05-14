@@ -1,0 +1,7 @@
+<div class="form-group select-language-picker">
+    <select [(ngModel)]="selectedLocale" (change)="changeLanguage()" class="form-control">
+        <option *ngFor="let locale of locales" value="{{ locale.code }}">
+            {{ locale.translation.name }}
+        </option>
+    </select>
+</div>

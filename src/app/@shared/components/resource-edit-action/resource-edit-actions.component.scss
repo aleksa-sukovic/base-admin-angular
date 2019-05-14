@@ -1,0 +1,26 @@
+.resource-edit-actions
+{
+    text-align: right;
+}
+
+.resource-edit-actions button
+{
+    &:hover
+    {
+        cursor: pointer;
+    }
+}
+
+.delete-text
+{
+    text-align: right;
+    font-weight: lighter;
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+
+    &:hover
+    {
+        text-decoration: underline;
+    }
+}

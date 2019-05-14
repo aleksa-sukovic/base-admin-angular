@@ -1,0 +1,14 @@
+<nb-card class="ng-star-inserted">
+    <nb-card-header>
+        {{ 'global.delete' | translate }} '{{ title }}'
+    </nb-card-header>
+
+    <nb-card-body>
+        {{ 'messages.delete-confirmation' | translate }} ?
+    </nb-card-body>
+
+    <nb-card-footer >
+        <button class="btn btn-danger mr-3" (click)="closeDialog({delete: true})">{{ 'global.delete' | translate }}</button>
+        <button class="btn btn-default text-dark" (click)="closeDialog({delete: false})">{{ 'global.cancel' | translate }}</button>
+    </nb-card-footer>
+</nb-card>
