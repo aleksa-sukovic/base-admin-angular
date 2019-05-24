@@ -8,6 +8,7 @@
     "sidebar.users.details": "Add user",
     "sidebar.user_groups.title": "User groups",
     "sidebar.user_groups.list": "All user groups",
+    "sidebar.required_example": "Required Example",
     "dashboard.title": "Welcome to",
     "dashboard.name": "dashboard",
     "resource.name": "Name",
