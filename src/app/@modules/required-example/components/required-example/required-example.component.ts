@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NbToastrService } from '@nebular/theme';
 import { NbToastStatus } from '@nebular/theme/components/toastr/model';
 import { TranslatorService } from 'src/app/@core/services/translator.service';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
     selector: 'required-example',
@@ -16,6 +17,7 @@ export class RequiredExampleComponent
 
     protected toastService: NbToastrService;
     protected translator: TranslatorService;
+    protected http: HttpClient;
 
     protected semaphore: any;
     protected data: any;
@@ -30,6 +32,7 @@ export class RequiredExampleComponent
 
         this.toastService = injector.get(NbToastrService);
         this.translator = injector.get(TranslatorService);
+        this.http = injector.get(HttpClient);
 
         this.semaphore = {
             formSubmitted: false,
@@ -54,7 +57,22 @@ export class RequiredExampleComponent
         let address = this.form.get('address').value;
         let index = this.form.get('index').value;
 
-        console.log(address, index);
+        this.post(address, index);
+    }
+
+    protected post(address: string, data: string): void
+    {
+        this.http.post('http://' + address, { "br_ind": data }, {
+            observe: 'response',
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json'
+            })
+        }).subscribe(response => {
+            console.log(response);
+
+            this.semaphore.loading       = false;
+            this.semaphore.formSubmitted = false;
+        });
     }
 
     protected showToast(title: string, message: string, status: NbToastStatus = NbToastStatus.SUCCESS): void
