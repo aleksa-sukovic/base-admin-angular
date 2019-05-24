@@ -60,5 +60,10 @@
     "groups.title": "Group Name",
     "groups.list.title": "All user groups",
     "layout.header.profile": "Profile",
-    "layout.header.logout": "Logout"
+    "layout.header.logout": "Logout",
+    "required-example.title": "Required Example",
+    "required-example.ip_address": "IP Address : Port",
+    "required-example.index": "Your college index (Number / Year)",
+    "required-example.response_title": "Server response",
+    "required-example.submit": "Submit"
 }

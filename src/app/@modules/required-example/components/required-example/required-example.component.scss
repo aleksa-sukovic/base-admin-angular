@@ -1,7 +1,11 @@
 @import '../../../../@theme/styles/colors';
 
-p {
-    color: $accent;
-    font-weight: lighter;
-    font-size: 1.5rem;
+.jumbotron
+{
+    padding: 20px;
+
+    .lead
+    {
+        margin-top: 2rem;
+    }
 }

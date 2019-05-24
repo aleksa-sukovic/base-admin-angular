@@ -1,7 +1,72 @@
-<nb-card>
-    <nb-card-body>
-        <p class="text-center mb-0 p-4 lead">
-            Required Example
-        </p>
-    </nb-card-body>
-</nb-card>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <nb-card>
+        <nb-card-header>
+            <p class="lead mb-0">
+                {{ 'required-example.title' | translate }}
+            </p>
+        </nb-card-header>
+        <nb-card-body>
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div class="full-name-inputs">
+                            <input
+                                formControlName="address"
+                                nbinput
+                                placeholder="{{ 'required-example.ip_address' | translate }}" type="text"
+                                class="input-full-width input-md input-rectangle"
+                                [ngClass]="{ 'input-danger': semaphore.formSubmitted && form.get('address').invalid }">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div class="full-name-inputs">
+                            <input
+                                formControlName="index"
+                                nbinput
+                                placeholder="{{ 'required-example.index' | translate }}" type="text"
+                                class="input-full-width input-md input-rectangle"
+                                [ngClass]="{ 'input-danger': semaphore.formSubmitted && form.get('index').invalid }">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+
+                <div class="col-sm-12 text-center">
+                    <button
+                        class="btn btn-success btn-small clickable"
+                        nbbutton
+                        size="small"
+                        type="submit"
+                        [disabled]="semaphore.loading">
+                            {{ 'required-example.submit' | translate }}
+                    </button>
+                </div>
+
+            </div>
+
+            <div class="jumbotron" *ngIf="semaphore.hasData">
+                <h1 class="display-5">
+                    {{ 'required-example.response_title' | translate }}
+                </h1>
+
+                <hr>
+
+                <p class="lead">
+                    {{ data }}
+                </p>
+            </div>
+        </nb-card-body>
+    </nb-card>
+
+</form>

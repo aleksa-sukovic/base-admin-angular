@@ -1,7 +1,5 @@
 import { Component, ViewChild, OnDestroy } from '@angular/core';
 import { SidebarComponent } from './@shared/components/sidebar/sidebar.component';
-import { LocaleService } from './@modules/locale/services/locale.service';
-import { LanguagePickerComponent } from './@shared/components/language-picker/language-picker.component';
 import { AuthService } from './@modules/auth/services/auth.service';
 import { Subscription } from 'rxjs';
 
@@ -16,7 +14,7 @@ export class AppComponent implements OnDestroy
     protected loggedInSubscription: Subscription;
     protected isLoggedIn: boolean;
 
-    constructor(private authService: AuthService)
+    constructor()
     {
         this.loggedInSubscription = AuthService.isLoggedInObservable.subscribe(value => this.isLoggedIn = value);
     }

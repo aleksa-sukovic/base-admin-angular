@@ -60,5 +60,10 @@
     "groups.title": "Ime Grupe",
     "groups.list.title": "Sve korisnicke grupe",
     "layout.header.profile": "Profil",
-    "layout.header.logout": "Odjavi se"
+    "layout.header.logout": "Odjavi se",
+    "required-example.title": "Obavezni Zadatak",
+    "required-example.ip_address": "IP Adresa : Port",
+    "required-example.index": "Vas indeks (Broj / Godina)",
+    "required-example.response_title": "Odgovor servera",
+    "required-example.submit": "Posalji"
 }
