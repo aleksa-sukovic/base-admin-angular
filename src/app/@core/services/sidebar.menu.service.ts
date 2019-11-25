@@ -23,7 +23,8 @@ export class SidebarMenuService
             items.dashboard,
             items.locales,
             items.users,
-            items.user_groups
+            items.user_groups,
+            items.required_example,
         ];
     }
 
@@ -34,7 +35,8 @@ export class SidebarMenuService
         return [
             items.dashboard,
             items.locales,
-            items.user_groups
+            items.user_groups,
+            items.required_example,
         ];
     }
 
@@ -83,6 +85,12 @@ export class SidebarMenuService
                         link: '/user-groups'
                     }
                 ]
+            },
+            'required_example': {
+                title: TranslatorService.get('sidebar.required_example'),
+                expanded: false,
+                icon: 'fas fa-graduation-cap',
+                link: '/required-example'
             }
         };
     }

@@ -8,6 +8,7 @@
     "sidebar.users.details": "Dodaj korisnika",
     "sidebar.user_groups.title": "Korisnicke grupe",
     "sidebar.user_groups.list": "Sve grupe",
+    "sidebar.required_example": "Obavezni Zadatak",
     "dashboard.title": "Dobrodosli na",
     "dashboard.name": "kontrolnu tablu",
     "resource.name": "Ime",
@@ -59,5 +60,10 @@
     "groups.title": "Ime Grupe",
     "groups.list.title": "Sve korisnicke grupe",
     "layout.header.profile": "Profil",
-    "layout.header.logout": "Odjavi se"
+    "layout.header.logout": "Odjavi se",
+    "required-example.title": "Obavezni Zadatak",
+    "required-example.ip_address": "IP Adresa : Port",
+    "required-example.index": "Vas indeks (Broj / Godina)",
+    "required-example.response_title": "Odgovor servera",
+    "required-example.submit": "Posalji"
 }

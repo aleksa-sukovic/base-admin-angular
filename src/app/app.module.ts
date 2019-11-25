@@ -13,6 +13,7 @@ import { LocaleModule } from './@modules/locale/locale.module';
 import { UserModule } from './@modules/user/user.module';
 import { UserGroupModule } from './@modules/user-group/user-group.module';
 import { AuthModule } from './@modules/auth/auth.module';
+import { RequiredExample } from './@modules/required-example/required-example.module';
 
 @NgModule({
     declarations: [
@@ -32,6 +33,7 @@ import { AuthModule } from './@modules/auth/auth.module';
         LocaleModule.forRoot(),
         UserModule,
         UserGroupModule,
+        RequiredExample,
 
         // 3rd party
         BrowserModule,
